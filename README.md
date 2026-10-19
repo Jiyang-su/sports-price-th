@@ -1,4 +1,4 @@
-# วิ่งดี VingDee — ไกด์ซื้อของวิ่งแบบคุ้มค่า (static site)
+# วิ่งดี VingDee — ไกด์อุปกรณ์และไลฟ์สไตล์การวิ่งแบบคุ้มค่า (static site)
 
 # เปรียบเทียบอุปกรณ์กีฬา (Sports equipment comparison, Thailand)
 
