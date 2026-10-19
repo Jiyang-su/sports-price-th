@@ -1,0 +1,67 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ตัวช่วยเลือกรองเท้าวิ่ง ตอบ 5 คำถาม แล้วดูรองเท้าวิ่งที่เหมาะกับคุณ แบ่งระดับราคา ประหยัด กลาง พรีเมียม จากหลายร้านในไทย">
+<meta property="og:title" content="ตัวช่วยเลือกรองเท้าวิ่ง"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><title>ตัวช่วยเลือกรองเท้าวิ่ง</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Thai",sans-serif;background:#f4f6f8;color:#222}
+header{background:#0b5cad;color:#fff;padding:12px 16px}header a{color:#fff}h1{margin:0;font-size:20px}
+main{max-width:980px;margin:auto;padding:12px}.q{background:#fff;border-radius:12px;padding:12px;margin-bottom:10px}
+.q h3{margin:0 0 8px;font-size:16px}.opts{display:flex;flex-wrap:wrap;gap:8px}.opts label{flex:1 1 140px}
+.opts input{display:none}.opts span{display:block;padding:10px;border:1.5px solid #cfd8e3;border-radius:10px;text-align:center;cursor:pointer;font-size:14px;background:#fff}
+.opts input:checked+span{border-color:#0b5cad;background:#e8f0fb;font-weight:700}
+#go{width:100%;padding:14px;font-size:17px;border:0;border-radius:12px;background:#ffb400;font-weight:700;margin:6px 0 14px}
+.tier{margin:16px 0 6px;font-size:18px}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.card{background:#fff;border-radius:12px;padding:10px;display:flex;flex-direction:column}.card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fafafa;border-radius:8px}
+.nm{font-weight:600;font-size:14px;margin:6px 0}.pr{color:#d0021b;font-weight:700;font-size:18px}.old{text-decoration:line-through;color:#999;font-size:12px;margin-left:4px}
+.why{font-size:13px;background:#f3f8f2;border-radius:8px;padding:6px 8px;margin:6px 0}.why li{margin:2px 0}.meta{font-size:12px;color:#666}
+.oth{font-size:12px;margin-top:4px}.btn{display:block;text-align:center;margin-top:auto;padding:8px;border-radius:8px;border:1px solid #0b5cad;color:#0b5cad;text-decoration:none}
+.empty{color:#777;font-size:14px;background:#fff;padding:10px;border-radius:10px}
+footer{padding:16px;font-size:12px;color:#666;text-align:center}
+</style></head><body>
+<header><h1>👟 ตัวช่วยเลือกรองเท้าวิ่ง</h1><small><a href="index.html">← กลับหน้าเปรียบเทียบอุปกรณ์กีฬาทั้งหมด</a></small></header>
+<main>
+<div class="q"><h3>1. คุณวิ่งมานานแค่ไหน?</h3><div class="opts" data-k="lvl">
+<label><input type="radio" name="lvl" value="new" checked><span>เพิ่งเริ่มวิ่ง</span></label><label><input type="radio" name="lvl" value="reg"><span>วิ่งประจำ</span></label><label><input type="radio" name="lvl" value="pro"><span>วิ่งจริงจัง / ซ้อมแข่ง</span></label></div></div>
+<div class="q"><h3>2. ส่วนใหญ่วิ่งแบบไหน?</h3><div class="opts">
+<label><input type="radio" name="use" value="easy" checked><span>วิ่งเบาๆ</span></label><label><input type="radio" name="use" value="10k"><span>5–10 กม.</span></label><label><input type="radio" name="use" value="half"><span>ฮาล์ฟ–มาราธอน</span></label><label><input type="radio" name="use" value="trail"><span>เทรล</span></label></div></div>
+<div class="q"><h3>3. วิ่งบนพื้นอะไร?</h3><div class="opts">
+<label><input type="radio" name="surf" value="road" checked><span>ถนน</span></label><label><input type="radio" name="surf" value="track"><span>ลู่วิ่ง / สวนสาธารณะ</span></label><label><input type="radio" name="surf" value="trail"><span>เทรล / ทางดิน</span></label></div></div>
+<div class="q"><h3>4. ชอบความรู้สึกแบบไหน?</h3><div class="opts">
+<label><input type="radio" name="cush" value="max"><span>นุ่มมาก ซัพพอร์ตแรงกระแทก</span></label><label><input type="radio" name="cush" value="balanced"><span>นุ่มพอดี ใช้ได้ทุกวัน</span></label><label><input type="radio" name="cush" value="race"><span>เบา เร็ว ตอบสนองไว</span></label><label><input type="radio" name="cush" value="any" checked><span>ไม่แน่ใจ</span></label></div></div>
+<div class="q"><h3>5. งบประมาณสูงสุด: <b id="bv"></b></h3><input id="budget" type="range" min="500" max="12000" step="100" value="6000" style="width:100%"></div>
+<button id="go">ดูรองเท้าที่แนะนำ</button>
+<div id="res"></div>
+</main>
+<footer>หมายเหตุ: ลิงก์บางส่วนอาจเป็นลิงก์พันธมิตร (affiliate) ซึ่งเว็บไซต์อาจได้รับค่าตอบแทนเมื่อมีการซื้อ แต่ไม่มีผลต่อการจัดอันดับหรือการเรียงลำดับสินค้า · ราคาเป็นราคา ณ วันที่เก็บข้อมูลที่แสดงในแต่ละรายการ และอาจเปลี่ยนแปลงได้ · การสั่งซื้อ การจัดส่ง และการคืนสินค้า ดำเนินการโดยร้านค้าแต่ละร้านโดยตรง กรุณาติดต่อร้านค้า · คุณสมบัติรองเท้า (เทรล/ถนน ระดับความนุ่ม) อนุมานจากชื่อรุ่นเท่านั้น ควรลองสวมจริงก่อนซื้อ</footer>
+<script>
+const $=id=>document.getElementById(id),fmt=n=>'฿'+Number(n).toLocaleString('th-TH'),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const v=n=>document.querySelector(`input[name=${n}]:checked`).value;let R=null;
+$('budget').oninput=()=>$('bv').textContent=fmt($('budget').value);$('budget').oninput();
+const CN={max:'นุ่มมาก (Max cushion)',balanced:'นุ่มพอดี ใส่ได้ทุกวัน',race:'เบา เน้นความเร็ว'};
+fetch('running.json').then(r=>r.json()).then(j=>{R=j;$('go').disabled=false}).catch(()=>$('res').innerHTML='<p class="empty">โหลดข้อมูลไม่สำเร็จ</p>');
+function rec(){if(!R)return;const lvl=v('lvl'),use=v('use'),surf=v('surf'),cush=v('cush'),B=+$('budget').value,trail=use=='trail'||surf=='trail';
+const byG={};R.items.forEach(x=>(byG[x.g]=byG[x.g]||[]).push(x));
+const sc=[];const seen=new Set();
+for(const x of R.items){if(x.trail!==trail||x.e>B)continue;
+ const key=x.g+'|'+x.s+'|'+(x.fam||x.n.slice(0,30));if(seen.has(key))continue;seen.add(key);
+ let s=0,why=[];why.push(trail?'ชื่อรุ่นระบุว่าเป็นรองเท้าเทรล เหมาะกับทางดิน/ภูเขา':'เป็นรองเท้าวิ่งถนน (ชื่อรุ่นไม่ได้ระบุว่าเป็นเทรล) เหมาะกับ'+(surf=='track'?'ลู่วิ่งและสวนสาธารณะ':'ถนน'));
+ if(x.cush){if(cush!='any'&&x.cush==cush){s+=3;why.push(`รุ่น ${x.fam.toUpperCase()} เป็นตระกูลที่${CN[x.cush]} ตรงกับที่คุณชอบ`)}
+  else if(cush=='any'){if(lvl=='new'&&x.cush!='race'){s+=2;why.push(`รุ่น ${x.fam.toUpperCase()} เป็นตระกูลที่${CN[x.cush]} เหมาะกับมือใหม่`)}else why.push(`รุ่น ${x.fam.toUpperCase()} เป็นตระกูลที่${CN[x.cush]}`)}
+  else why.push(`รุ่น ${x.fam.toUpperCase()} เป็นตระกูลที่${CN[x.cush]} (ต่างจากที่เลือกไว้เล็กน้อย)`);
+  if(x.cush=='race'&&lvl=='new')s-=2;if(x.cush=='race'&&lvl=='pro'&&(use=='half'||use=='10k')){s+=2;why.push('เหมาะกับการซ้อมเร็วหรือวันแข่ง')}
+  if(use=='half'&&x.cush=='max'){s+=1;why.push('ความนุ่มช่วยลดความล้าในระยะไกล')}
+  if(x.stab){why.push('ชื่อรุ่นอยู่ในกลุ่มที่มีซัพพอร์ต (stability)')}}
+ else{s-=1;why.push('ระบุระดับความนุ่มจากชื่อรุ่นไม่ได้ ควรดูรายละเอียดที่หน้าร้าน')}
+ const others=(byG[x.g]||[]).filter(o=>o.s!=x.s);const os={};others.forEach(o=>{if(!(o.s in os)||o.e<os[o.s].e)os[o.s]=o});
+ if(Object.keys(os).length)why.push('มีขายหลายร้าน เปรียบเทียบราคาได้');
+ sc.push({x,s,why,os:Object.values(os)})}
+const tiers=['ประหยัด','กลาง','พรีเมียม'];let h=`<p class="meta">ราคาแบ่งระดับจากรองเท้าวิ่งทั้งหมดในระบบ: ประหยัด ≤ ${fmt(R.tiers[0])}, กลาง ≤ ${fmt(R.tiers[1])}, พรีเมียม มากกว่านั้น · เรียงตามความเหมาะสมกับคำตอบ แล้วตามราคาจากถูกไปแพง</p>`;
+for(const t of tiers){const L=sc.filter(c=>c.x.t==t).sort((a,b)=>b.s-a.s||a.x.e-b.x.e).slice(0,4);
+ h+=`<h2 class="tier">${t=='ประหยัด'?'💚':t=='กลาง'?'💙':'💜'} ระดับ${t}</h2>`;
+ h+=L.length?`<div class="cards">${L.map(c=>{const x=c.x;return `<div class="card"><img loading="lazy" src="${esc(x.i)}" alt=""><div class="nm">${esc(x.n)}</div>
+ <div><span class="pr">${fmt(x.e)}</span>${x.sp?`<span class="old">${fmt(x.p)}</span>`:''}</div><div class="meta">${esc(x.b)} · ร้าน ${esc(x.s)} · ข้อมูล ณ ${x.d}</div>
+ <ul class="why">${c.why.map(w=>`<li>${esc(w)}</li>`).join('')}</ul>
+ ${c.os.length?`<div class="oth">ราคาร้านอื่น: ${c.os.map(o=>`<a href="${esc(o.u)}" target="_blank" rel="noopener sponsored">${esc(o.s)} ${fmt(o.e)}</a>`).join(' · ')}</div>`:''}
+ <a class="btn" href="${esc(x.u)}" target="_blank" rel="noopener sponsored">ดูที่ร้าน ${esc(x.s)}</a></div>`}).join('')}</div>`:`<p class="empty">ไม่พบรุ่นที่ตรงเงื่อนไขในระดับนี้${t!='ประหยัด'?' (ลองเพิ่มงบประมาณ)':''}</p>`}
+$('res').innerHTML=h;$('res').scrollIntoView({behavior:'smooth'})}
+$('go').onclick=rec;
+</script></body></html>
