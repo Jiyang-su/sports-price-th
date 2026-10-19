@@ -32,4 +32,6 @@
 </ul></section>
 <script>if(AFF.size)$('affNow').innerHTML=`<b>ร้านที่ลิงก์เป็น affiliate ตอนนี้:</b> ${[...AFF].map(esc).join(', ')} · ลิงก์ของร้านเหล่านี้ติดแท็ก <code>rel="sponsored"</code> ร้านอื่นเป็นลิงก์ตรง`;
 if(window.track&&track.enabled)$('anaState').textContent='ตอนนี้เปิดใช้ระบบนับสถิติแบบไม่ระบุตัวตนแล้ว';</script>
+<section class="sec" id="shipping"><h2>เทียบการจัดส่งของแต่ละร้าน</h2><p class="lead">ข้อมูลจากหน้านโยบายการจัดส่งของร้านเอง ณ วันที่ตรวจ ร้านอาจเปลี่ยนเงื่อนไขได้ โปรดดูยอดสุดท้ายที่หน้าชำระเงินของร้าน · วันที่ “สั่งวันนี้ ประมาณ…” บนการ์ดสินค้าเป็นการประมาณการจากจำนวนวันทำการที่ร้านแจ้ง ไม่ใช่การรับประกัน</p><div id="shipT"></div></section>
+<script>document.getElementById("shipT").innerHTML=shipTable()</script>
 </body></html>

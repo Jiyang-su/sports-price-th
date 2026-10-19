@@ -6,7 +6,6 @@ Static, neutral price-comparison catalog built from public product data of Thai 
 ```
 python3 scrape_supersports.py                     # Supersports (Shopify /products.json)
 python3 scrape_decathlon.py 3500                  # Decathlon TH (sitemap + page data), N items
-python3 scrape_shopify.py www.probike.co.th Probike
 python3 scrape_shopify.py www.hoka.co.th HOKA
 python3 scrape_shopify.py www.skechers.co.th Skechers 25
 python3 build.py && python3 build_finder.py   # -> products.csv/json, index.html (inline), site/ (deploy)
