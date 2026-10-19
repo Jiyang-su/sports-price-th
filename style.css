@@ -29,3 +29,4 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px
 footer.f{border-top:1px solid var(--line);padding:40px 5vw 70px;color:var(--mut);font-size:12px;line-height:1.8}
 @media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:8px}.card{padding:10px}.pr{font-size:19px}section.sec{padding:50px 5vw}nav.top .links{gap:12px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:640px){.hero[style*="hero-coast"]{background-position:90% 60%!important}}

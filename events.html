@@ -21,6 +21,6 @@ const EV=[['2026-11-15','Bangsaen42 Chonburi Marathon 2026','ชลบุรี'
 ['2027-01-17','จอมบึงมาราธอน ครั้งที่ 40','ราชบุรี','42.195K / 21.1K / 10K',['https://www.mcru.ac.th/index.php/th/news/news-491',S1]]];
 function prep(dist){const full=/42/.test(dist),half=/21/.test(dist);return full?'running-shoe-finder.html?use=half':half?'running-shoe-finder.html?use=half':'running-shoe-finder.html?use=10k'}
 $('ev').innerHTML=EV.map(([d,n,p,dist,src])=>`<div class="card"><div class="kick up" style="color:var(--acc);margin:0">${thDate(d)}</div><h3 style="margin:6px 0;font-size:18px">${esc(n)}</h3><div class="meta">📍 ${esc(p)}</div><div style="margin:8px 0">${dist.split(' / ').map(x=>`<span class="tag">${x}</span>`).join('')}</div>
-<div class="meta">ที่มา: ${src.map((s,i)=>`<a href="${s}" target="_blank" rel="noopener">แหล่ง ${i+1}</a>`).join(' · ')}</div><div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><a class="btn sm acc" href="${prep(dist)}">เตรียมรองเท้า</a><a class="btn sm" href="catalog.html?cat=วิ่ง">อุปกรณ์วิ่งอื่นๆ</a></div></div>`).join('');
+<div class="meta">ที่มา: ${src.map((s,i)=>`<a href="${s}" target="_blank" rel="noopener">แหล่ง ${i+1}</a>`).join(' · ')}</div><div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><a class="btn sm acc" href="${prep(dist)}">เตรียมรองเท้า</a><a class="btn sm" href="catalog.html">อุปกรณ์วิ่งอื่นๆ</a></div></div>`).join('');
 </script>
 </body></html>

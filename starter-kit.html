@@ -1,0 +1,34 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ชุดเริ่มต้นนักวิ่งมือใหม่</title>
+<meta name="description" content="จัดชุดอุปกรณ์วิ่งสำหรับมือใหม่ รองเท้า ถุงเท้า เสื้อ และของจำเป็น ในงบที่ตั้งไว้"><meta property="og:title" content="ชุดเริ่มต้นนักวิ่งมือใหม่"><meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="common.js"></script></head><body><header class="hero" style="background-image:url(img/trail-group.jpg);min-height:52svh"><div class="kick up" style="color:#ff7a1a">ตัวช่วยเลือก · มือใหม่</div><h1>ชุดเริ่มต้นนักวิ่ง<br>ในงบที่คุณตั้ง</h1></header>
+<section class="sec"><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div><label class="up kick">วิ่งที่ไหน</label><select id="surf"><option value="road">ถนน / สวนสาธารณะ</option><option value="trail">เทรล / ทางธรรมชาติ</option></select></div>
+<div><label class="up kick">วิ่งเวลาไหนบ่อย</label><select id="time"><option value="day">เช้า / เย็น มีแสง</option><option value="dark">มืด / ก่อนสว่าง</option></select></div>
+<div><label class="up kick">งบรวมทั้งชุด</label><select id="bud"><option>1500</option><option selected>3000</option><option>5000</option></select></div></div>
+<p><button class="btn acc" id="go">จัดชุดให้ฉัน</button></p><div id="out"></div></section>
+<script>
+let C=[],S=[];Promise.all([fetch('run_catalog.json').then(r=>r.json()),fetch('running.json').then(r=>r.json())]).then(([c,s])=>{C=c.products;S=s.items;run()});
+const E=x=>x.sale_price??x.price;
+function pick(list,max,ok){const c=list.filter(x=>E(x)<=max&&ok(x)).sort((a,b)=>E(b)-E(a));return c[0]||null}
+function run(){const B=+$('bud').value,trail=$('surf').value=='trail',dark=$('time').value=='dark';
+ const W=B<=1500?{shoe:.78,sock:.08,cap:.0,shirt:.14}:B<=3000?{shoe:.65,sock:.06,shirt:.15,cap:.06,bottle:.08}:{shoe:.6,sock:.05,shirt:.12,cap:.05,bottle:.08,watch:.10};
+ if(dark)W.safety=.06;
+ const shoes=S.filter(x=>x.trail===trail&&x.cush!=='race');let used=0,items=[],gaps=[];
+ const sh=pick(shoes.map(x=>({name:x.n,brand:x.b,price:x.p,sale_price:x.sp,image:x.i,link:x.u,scraped:x.d,cush:x.cush,fam:x.fam})),B*W.shoe,x=>true);
+ if(sh){items.push(['รองเท้าวิ่ง',sh,`รองเท้าวิ่ง${trail?'เทรล':'ถนน'}${sh.fam?` ตระกูล ${sh.fam.toUpperCase()} ซึ่งเป็นรุ่น${sh.cush=='max'?'นุ่มมาก':'นุ่มพอดีใส่ได้ทุกวัน'}`:''} · ใช้งบส่วนใหญ่กับรองเท้าเพราะสำคัญที่สุดต่อการบาดเจ็บ`]);used+=E(sh)}else gaps.push('รองเท้าวิ่ง');
+ const P=(sub,k,re,why,label)=>{if(!W[k])return;const x=pick(C.filter(p=>p.sub==sub&&(!re||re.test(p.name))),Math.max(B*W[k],0)+(B-used-Object.keys(W).length*0)*0,()=>true);
+  if(x&&used+E(x)<=B){items.push([label,x,why]);used+=E(x)}else gaps.push(label)};
+ P('ถุงเท้า','sock',null,'ถุงเท้าสำหรับวิ่งช่วยลดการเสียดสีและตุ่มพอง','ถุงเท้าวิ่ง');
+ P('เสื้อผ้าวิ่ง','shirt',/^(?!.*(แจ็คเก็ต|jacket|bra|บรา|กันลม|hood)).*(เสื้อ|shirt|tee|tank|singlet)/i,'เสื้อสำหรับวิ่งระบายเหงื่อได้ดีกว่าเสื้อฝ้าย','เสื้อวิ่ง');
+ P('หมวก/แว่น/ผ้าคาดหัว','cap',/หมวก|cap|visor/i,'กันแดดและเหงื่อไหลเข้าตา เหมาะกับอากาศร้อน','หมวกวิ่ง');
+ P('ไฮเดรชัน/กระเป๋าวิ่ง','bottle',null,trail?'วิ่งเทรลมักไม่มีจุดให้น้ำ ควรพกน้ำเอง':'ใส่ของจำเป็น/น้ำ ระหว่างวิ่งระยะยาว','ไฮเดรชัน/กระเป๋าวิ่ง');
+ P('นาฬิกา/GPS','watch',null,'ช่วยจับเวลาและระยะ ทำให้คุมความเร็วการซ้อมได้ (ไม่จำเป็นสำหรับมือใหม่)','นาฬิกา');
+ P('ความปลอดภัย/สะท้อนแสง','safety',null,'วิ่งในที่มืดควรมีไฟหรือแถบสะท้อนแสงให้รถมองเห็น','อุปกรณ์สะท้อนแสง/ไฟ');
+ const tot=items.reduce((s,[,x])=>s+E(x),0);
+ $('out').innerHTML=`<p class="meta">รวมทั้งชุด <b style="color:#fff;font-size:22px">${fmt(tot)}</b> จากงบ ${fmt(B)} · ใช้สินค้าจริงจากแคตตาล็อก</p>${gaps.length?`<div class="note">ไม่พบ ${gaps.join(', ')} ที่เข้ากับงบส่วนนี้ในแคตตาล็อก${B<=1500?' · งบ 1,500 บาท เน้นรองเท้าก่อน ส่วนอื่นใช้ของที่มีได้':''}</div>`:''}
+ <div class="grid" style="margin-top:16px">${items.map(([l,x,w])=>`<div class="card"><div class="kick up" style="color:var(--acc);margin:0 0 8px">${l}</div><img class="pi" src="${esc(x.image)}" alt=""><div class="nm">${esc(x.name)}</div><div class="pr">${fmt(E(x))}</div><div class="meta">${esc(x.brand)} · ข้อมูล ณ ${thDate(x.scraped)}</div><p style="font-size:13px;color:#cfd4da">${w}</p><a class="btn sm acc" style="margin-top:auto;text-align:center" href="${esc(x.link||x.url)}" target="_blank" rel="noopener sponsored">ไปที่หน้าร้าน</a></div>`).join('')}</div>`}
+$('go').onclick=run;
+</script>
+</body></html>
