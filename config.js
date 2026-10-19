@@ -5,6 +5,6 @@
 //   is non-empty). Links to those stores get rel="sponsored nofollow noopener"; all others get rel="nofollow noopener".
 window.SITE_CONFIG={
   ANALYTICS_PROVIDER:'goatcounter',
-  ANALYTICS_CODE:'',
+  ANALYTICS_CODE:'runguideth',
   AFFILIATE_STORES:[]
 };
