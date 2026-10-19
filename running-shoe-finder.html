@@ -2,7 +2,7 @@
 <meta name="description" content="ตอบ 5 คำถาม แล้วดูรองเท้าวิ่งที่เหมาะกับคุณ"><meta property="og:title" content="ตัวช่วยเลือกรองเท้าวิ่ง"><meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><script src="common.js"></script></head><body><style>
+<link rel="stylesheet" href="style.css"><script src="config.js"></script><script src="track.js"></script><script src="common.js"></script></head><body><style>
 :root{--line:#262626;--mut:#9a9a9a}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Barlow,"Noto Sans Thai",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit}.up{text-transform:uppercase;letter-spacing:.18em}:lang(th) .up{letter-spacing:.06em}h2.up{letter-spacing:.03em}
 nav.x{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;font-weight:600;font-size:13px;background:linear-gradient(#000,#0000)}nav a{text-decoration:none}
@@ -62,7 +62,7 @@ window._rank={};for(const t of tiers){const L=sc.filter(c=>c.x.t==t).sort((a,b)=
  <div><span class="pr">${fmt(x.e)}</span>${x.sp?`<span class="old">${fmt(x.p)}</span>`:''}${c.disc?`<span class="off">-${c.disc}%</span>`:''}</div>${perKm(x.e)}<div class="meta">${esc(x.b)} · ข้อมูล ณ ${x.d}</div>
  <ul class="why">${c.why.map(w=>`<li>${esc(w)}</li>`).join('')}</ul>
  
- <a class="btn" href="${esc(x.u)}" target="_blank" rel="noopener sponsored">ไปที่หน้าร้าน</a></div>`}).join('')}</div>`:`<p class="empty">ไม่พบรุ่นที่ตรงเงื่อนไขในระดับนี้${t!='ประหยัด'?' (ลองเพิ่มงบประมาณ)':''}</p>`}
+ ${shopBtn(x.u,x.s,"finder-card","btn","")}</div>`}).join('')}</div>`:`<p class="empty">ไม่พบรุ่นที่ตรงเงื่อนไขในระดับนี้${t!='ประหยัด'?' (ลองเพิ่มงบประมาณ)':''}</p>`}
 $('res').innerHTML=h;show(6)}
 
 

@@ -2,7 +2,7 @@
 <meta name="description" content="จัดชุดอุปกรณ์วิ่งสำหรับมือใหม่ รองเท้า ถุงเท้า เสื้อ และของจำเป็น ในงบที่ตั้งไว้"><meta property="og:title" content="ชุดเริ่มต้นนักวิ่งมือใหม่"><meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><script src="common.js"></script></head><body><header class="hero" style="background-image:url(img/trail-group.jpg);min-height:52svh"><div class="kick up" style="color:#ff7a1a">ตัวช่วยเลือก · มือใหม่</div><h1>ชุดเริ่มต้นนักวิ่ง<br>ในงบที่คุณตั้ง</h1></header>
+<link rel="stylesheet" href="style.css"><script src="config.js"></script><script src="track.js"></script><script src="common.js"></script></head><body><header class="hero" style="background-image:url(img/trail-group.jpg);min-height:52svh"><div class="kick up" style="color:#ff7a1a">ตัวช่วยเลือก · มือใหม่</div><h1>ชุดเริ่มต้นนักวิ่ง<br>ในงบที่คุณตั้ง</h1></header>
 <section class="sec"><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
 <div><label class="up kick">วิ่งที่ไหน</label><select id="surf"><option value="road">ถนน / สวนสาธารณะ</option><option value="trail">เทรล / ทางธรรมชาติ</option></select></div>
 <div><label class="up kick">วิ่งเวลาไหนบ่อย</label><select id="time"><option value="day">เช้า / เย็น มีแสง</option><option value="dark">มืด / ก่อนสว่าง</option></select></div>
@@ -26,7 +26,7 @@ function run(){const B=+$('bud').value,trail=$('surf').value=='trail',dark=$('ti
  if(dark)W.safety=.06;
  if(own&&W.shoe){const k=1-W.shoe;delete W.shoe;for(const q in W)W[q]=W[q]/k}
  const shoes=S.filter(x=>x.trail===trail&&x.cush!=='race');let used=0,items=[],gaps=[];
- const sh=own?null:pick(shoes.map(x=>({name:x.n,brand:x.b,price:x.p,sale_price:x.sp,image:x.i,link:x.u,scraped:x.d,cush:x.cush,fam:x.fam})),B*W.shoe,x=>true);
+ const sh=own?null:pick(shoes.map(x=>({name:x.n,brand:x.b,price:x.p,sale_price:x.sp,image:x.i,link:x.u,store:x.s,scraped:x.d,cush:x.cush,fam:x.fam})),B*W.shoe,x=>true);
  if(sh){items.push(['รองเท้าวิ่ง',sh,`รองเท้าวิ่ง${trail?'เทรล':'ถนน'}${sh.fam?` ตระกูล ${sh.fam.toUpperCase()} ซึ่งเป็นรุ่น${sh.cush=='max'?'นุ่มมาก':'นุ่มพอดีใส่ได้ทุกวัน'}`:''} · ใช้งบส่วนใหญ่กับรองเท้าเพราะสำคัญที่สุดต่อการบาดเจ็บ`]);used+=E(sh)}else if(!own)gaps.push('รองเท้าวิ่ง');
  const P=(sub,k,re,why,label)=>{if(!W[k])return;const x=pick(C.filter(p=>p.sub==sub&&(!re||re.test(p.name))),Math.max(B*W[k],0)+(B-used-Object.keys(W).length*0)*0,()=>true);
   if(x&&used+E(x)<=B){items.push([label,x,why]);used+=E(x)}else gaps.push(label)};
@@ -38,7 +38,7 @@ function run(){const B=+$('bud').value,trail=$('surf').value=='trail',dark=$('ti
  P('ความปลอดภัย/สะท้อนแสง','safety',null,'วิ่งในที่มืดควรมีไฟหรือแถบสะท้อนแสงให้รถมองเห็น','อุปกรณ์สะท้อนแสง/ไฟ');
  const tot=items.reduce((s,[,x])=>s+E(x),0);
  $('out').innerHTML=`<p class="meta">รวมทั้งชุด <b style="color:#fff;font-size:22px">${fmt(tot)}</b> จากงบ ${fmt(B)} · ใช้สินค้าจริงจากแคตตาล็อก</p>${gaps.length?`<div class="note">ไม่พบ ${gaps.join(', ')} ที่เข้ากับงบส่วนนี้ในแคตตาล็อก${B<=1500?' · งบน้อย เน้นรองเท้าก่อน ส่วนอื่นใช้ของที่มีได้':''}</div>`:''}${B<=1000&&!own?'<div class="note">งบ 1,000 บาท: รองเท้าคู่เดียวก็เริ่มวิ่งได้ ถุงเท้าและเสื้อกีฬาที่มีอยู่ใช้ไปก่อน</div>':''}${own?'<div class="note">ใช้รองเท้าคู่เดิมก่อน: ถ้าพื้นรองเท้ายังไม่สึกจนเรียบ และวิ่งแล้วไม่เจ็บ ก็เริ่มได้เลย งบนี้จึงนำไปใช้กับของจำเป็นอื่นแทน</div>':''}
- <div class="grid" style="margin-top:16px">${items.map(([l,x,w])=>`<div class="card"><div class="kick up" style="color:var(--acc);margin:0 0 8px">${l}</div><img class="pi" src="${esc(x.image)}" alt=""><div class="nm">${esc(x.name)}</div><div class="pr">${fmt(E(x))}</div><div class="meta">${esc(x.brand)} · ข้อมูล ณ ${thDate(x.scraped)}</div>${l=='รองเท้าวิ่ง'?perKm(E(x)):''}<p style="font-size:13px;color:#cfd4da">${w}</p><a class="btn sm acc" style="margin-top:auto;text-align:center" href="${esc(x.link||x.url)}" target="_blank" rel="noopener sponsored">ไปที่หน้าร้าน</a></div>`).join('')}</div>`}
+ <div class="grid" style="margin-top:16px">${items.map(([l,x,w])=>`<div class="card"><div class="kick up" style="color:var(--acc);margin:0 0 8px">${l}</div><img class="pi" src="${esc(x.image)}" alt=""><div class="nm">${esc(x.name)}</div><div class="pr">${fmt(E(x))}</div><div class="meta">${esc(x.brand)} · ข้อมูล ณ ${thDate(x.scraped)}</div>${l=='รองเท้าวิ่ง'?perKm(E(x)):''}<p style="font-size:13px;color:#cfd4da">${w}</p>${shopBtn(x.link||x.url,x.store,"starter-kit")}</div>`).join('')}</div>`}
 $('go').onclick=run;
 </script>
 </body></html>

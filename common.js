@@ -5,7 +5,7 @@ const thDate=s=>{const d=new Date(s+'T00:00:00');return d.getDate()+' '+TH_M[d.g
 const NAV=[['index.html','หน้าแรก'],['deals.html','คุ้มค่าตอนนี้'],['finders.html','ตัวช่วยเลือก'],['starter-kit.html','ชุดเริ่มต้นนักวิ่ง'],['insights.html','ความรู้เชิงลึก'],['events.html','ปฏิทินงานวิ่ง'],['catalog.html','อุปกรณ์วิ่งทั้งหมด']];
 document.addEventListener('DOMContentLoaded',()=>{const here=location.pathname.split('/').pop()||'index.html';
  document.body.insertAdjacentHTML('afterbegin',`<nav class="top"><a class="up" href="index.html" style="opacity:1">RUN · GUIDE TH</a><div class="links">${NAV.map(([h,t])=>`<a href="${h}" class="${h==here?'on':''}">${t}</a>`).join('')}</div></nav>`);
- document.body.insertAdjacentHTML('beforeend',`<footer class="f"><div class="up" style="color:#fff;margin-bottom:8px">หมายเหตุ</div>ลิงก์บางส่วนอาจเป็นลิงก์พันธมิตร (affiliate) ซึ่งเว็บไซต์อาจได้รับค่าตอบแทนเมื่อมีการซื้อ แต่ไม่มีผลต่อการแนะนำหรือการเรียงลำดับสินค้า · ราคาเป็นราคา ณ วันที่เก็บข้อมูลที่แสดงในแต่ละรายการ และอาจเปลี่ยนแปลงได้ · การสั่งซื้อ การจัดส่ง และการคืนสินค้า ดำเนินการโดยร้านค้าแต่ละร้านโดยตรง กรุณาติดต่อร้านค้า · คำแนะนำอ้างอิงจากชื่อรุ่นและข้อมูลสาธารณะ ควรลองสวมจริงก่อนซื้อ · <a href="img/CREDITS.md">เครดิตภาพ (Wikimedia Commons / Unsplash, สัญญาอนุญาตเสรี)</a> · <span style="color:#ffcf66">เวอร์ชันต้นแบบ (prototype)</span></footer>`)});
+ document.body.insertAdjacentHTML('beforeend',`<footer class="f"><div class="up" style="color:#fff;margin-bottom:8px">หมายเหตุ</div>ลิงก์ร้านค้าบางส่วนอาจเป็นลิงก์พันธมิตร (affiliate) ซึ่งเว็บไซต์อาจได้รับค่าคอมมิชชันเมื่อมีการซื้อ โดยผู้ซื้อไม่ต้องจ่ายเพิ่ม และไม่มีผลต่อการแนะนำหรือการเรียงลำดับสินค้า · นับเฉพาะจำนวนคลิกแบบไม่ระบุตัวตน ไม่ใช้คุกกี้ · ราคาเป็นราคา ณ วันที่เก็บข้อมูลที่แสดงในแต่ละรายการ และอาจเปลี่ยนแปลงได้ · การสั่งซื้อ การจัดส่ง และการคืนสินค้า ดำเนินการโดยร้านค้าแต่ละร้านโดยตรง กรุณาติดต่อร้านค้า · คำแนะนำอ้างอิงจากชื่อรุ่นและข้อมูลสาธารณะ ควรลองสวมจริงก่อนซื้อ · <a href="about.html">เว็บนี้หารายได้อย่างไร / ความเป็นส่วนตัว</a> · <a href="img/CREDITS.md">เครดิตภาพ (Wikimedia Commons / Unsplash, สัญญาอนุญาตเสรี)</a> · <span style="color:#ffcf66">เวอร์ชันต้นแบบ (prototype)</span></footer>`)});
 let HIST=null;const histP=fetch('history/series.json').then(r=>r.json()).then(j=>HIST=j).catch(()=>HIST={meta:{start:'2026-10-19',days:1},series:{}});
 function priceInfo(url,cur){const s=HIST&&HIST.series[url];if(!s||s.length<2)return{label:`เริ่มติดตามราคา ${thDate((HIST&&HIST.meta.start)||'2026-10-19')}`,cls:'',s:null};
  const ps=s.map(x=>x[1]),mn=Math.min(...ps),sorted=[...ps].sort((a,b)=>a-b),med=sorted[Math.floor(sorted.length/2)];
@@ -16,7 +16,7 @@ function openProduct(p){let ov=$('pov');if(!ov){document.body.insertAdjacentHTML
  const e=p.sale_price??p.price,pi=priceInfo(p.url,e);$('pbox').style.setProperty('--acc',acc(p.category));
  $('pbox').innerHTML=`<button class="btn sm" style="float:right" onclick="$('pov').style.display='none'">ปิด</button><h3 style="margin:0 0 14px;max-width:85%">${esc(p.name)}</h3>
  <div style="display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:20px" class="pgrid"><img class="pi" src="${esc(p.image)}" alt="" style="width:100%;background:#fff;border-radius:4px;padding:6px">
- <div><div class="pr">${fmt(e)}</div><div class="meta">${esc(p.brand)} · ${esc(p.category)} · ข้อมูล ณ ${thDate(p.scraped)}</div><p><a class="btn acc" href="${esc(p.link||p.url)}" target="_blank" rel="noopener sponsored">ไปที่หน้าร้าน</a></p>
+ <div><div class="pr">${fmt(e)}</div><div class="meta">${esc(p.brand)} · ${esc(p.category)} · ข้อมูล ณ ${thDate(p.scraped)}</div><p>${shopBtn(p.link||p.url,p.store,"catalog-popup","btn acc","")}</p>
  <h4 class="up" style="margin:18px 0 6px;font-size:12px;color:var(--mut)">ประวัติราคา</h4>${pi.s?spark(pi.s)+`<span class="tag ${pi.cls}">${pi.label}</span>`:`<div class="note">${pi.label} · กราฟและป้าย "ราคานี้ดีไหม" จะแสดงเมื่อมีข้อมูลอย่างน้อย 2 วัน</div>`}
  <h4 class="up" style="margin:18px 0 6px;font-size:12px;color:var(--mut)">แจ้งเตือนเมื่อราคาลด</h4><button class="btn sm" disabled>🔔 แจ้งเตือนทาง LINE</button> <span class="proto">เร็วๆ นี้</span><div class="meta">ระบบแจ้งเตือนผ่าน LINE ยังไม่เปิดใช้งาน (ต้นแบบหน้าจอเท่านั้น)</div></div></div>
  <h4 class="up" style="margin:26px 0 6px;font-size:12px;color:var(--mut)">รีวิวจากคนเล่นจริง <span class="proto">ต้นแบบ</span></h4><div class="note">ยังไม่มีรีวิวสำหรับสินค้านี้ — เป็นคนแรกที่รีวิว</div>
@@ -26,3 +26,10 @@ function openProduct(p){let ov=$('pov');if(!ov){document.body.insertAdjacentHTML
 // v5: estimated cost per km = price / typical shoe lifespan 500-800 km (ESTIMATE, not measured)
 const KM_LO=500,KM_HI=800,r1=v=>v<10?v.toFixed(1):Math.round(v);
 function perKm(e){return `<div class="km" title="ประมาณการ: ราคา ÷ อายุการใช้งานทั่วไป ${KM_LO}–${KM_HI} กม. ใช้จริงขึ้นกับน้ำหนักตัว พื้น และการดูแล">≈ ฿${r1(e/KM_HI)}–${r1(e/KM_LO)} ต่อกม. <span>(ประมาณการ ${KM_LO}–${KM_HI} กม.)</span></div>`}
+
+// v6: outbound shop links — rel + disclosure label + tracking attributes in ONE place
+const AFF=new Set((window.SITE_CONFIG||{}).AFFILIATE_STORES||[]);
+const relFor=store=>AFF.has(store)?'sponsored nofollow noopener':'nofollow noopener';
+const AFF_LBL='<div class="aff" onclick="event.stopPropagation()">ลิงก์ร้านค้า · อาจเป็น Affiliate · <a href="about.html">เว็บนี้หารายได้อย่างไร</a></div>';
+function shopA(url,store,pos,inner,cls='',style=''){return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(url)}" target="_blank" rel="${relFor(store)}" data-out="${esc(store)}" data-pos="${pos}" onclick="event.stopPropagation()">${inner}</a>`}
+function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-align:center',text='ไปที่หน้าร้าน'){return shopA(url,store,pos,text,cls,style)+AFF_LBL}

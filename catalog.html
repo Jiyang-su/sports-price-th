@@ -2,7 +2,7 @@
 <meta name="description" content="รองเท้าวิ่ง เสื้อผ้าวิ่ง นาฬิกา ไฮเดรชัน เจล และอุปกรณ์วิ่งอื่นๆ"><meta property="og:title" content="อุปกรณ์วิ่งทั้งหมด"><meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><script src="common.js"></script></head><body><section class="sec" style="border:0"><div class="kick up" style="color:#ff7a1a">อุปกรณ์วิ่ง</div><h2>อุปกรณ์วิ่งทั้งหมด</h2><p class="lead" id="info">กำลังโหลด…</p>
+<link rel="stylesheet" href="style.css"><script src="config.js"></script><script src="track.js"></script><script src="common.js"></script></head><body><section class="sec" style="border:0"><div class="kick up" style="color:#ff7a1a">อุปกรณ์วิ่ง</div><h2>อุปกรณ์วิ่งทั้งหมด</h2><p class="lead" id="info">กำลังโหลด…</p>
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:18px">
 <input id="q" placeholder="ค้นหา…" aria-label="ค้นหา"><select id="cat" aria-label="หมวด"><option value="">ทุกประเภท</option></select><select id="tier" aria-label="ระดับราคา"><option value="">ทุกระดับราคา</option><option>ประหยัด</option><option>กลาง</option><option>พรีเมียม</option></select>
 <select id="brand" aria-label="ยี่ห้อ"><option value="">ทุกยี่ห้อ</option></select><input id="max" type="number" placeholder="ราคาไม่เกิน (บาท)" aria-label="ราคาไม่เกิน"><select id="sort" aria-label="เรียง"><option value="">ตามลำดับข้อมูล</option><option value="asc">ราคา ต่ำ → สูง</option><option value="desc">ราคา สูง → ต่ำ</option></select></div>
@@ -17,7 +17,7 @@ function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean)
 function render(){$('info').textContent=`${L.length.toLocaleString()} รายการ · แตะสินค้าเพื่อดูประวัติราคาและรีวิว`;
  $('grid').innerHTML=L.slice(0,shown).map(p=>{const pi=priceInfo(p.url,eff(p));return `<article class="card" style="--acc:${acc(p.category)};cursor:pointer" onclick="openProduct(D[${D.indexOf(p)}])" tabindex="0"><img class="pi" loading="lazy" src="${esc(p.image)}" alt=""><div class="nm">${esc(p.name)}</div>
  <div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div><div class="meta">${esc(p.brand)} · ข้อมูล ณ ${thDate(p.scraped)}</div><div><span class="tag a">${esc(p.sub)}</span><span class="tag">${esc(p.price_tier)}</span></div><div class="meta" style="margin-top:6px">📈 ${pi.label}</div>
- <a class="btn sm" style="margin-top:12px;text-align:center" href="${esc(p.link||p.url)}" target="_blank" rel="noopener sponsored" onclick="event.stopPropagation()">ไปที่หน้าร้าน</a></article>`}).join('');$('more').style.display=shown<L.length?'inline-block':'none'}
+ ${shopBtn(p.link||p.url,p.store,"catalog-card","btn sm","margin-top:12px;text-align:center")}</article>`}).join('');$('more').style.display=shown<L.length?'inline-block':'none'}
 ['q','cat','tier','brand','max','sort'].forEach(i=>$(i).addEventListener('input',apply));$('more').onclick=()=>{shown+=48;render()};
 </script>
 </body></html>
