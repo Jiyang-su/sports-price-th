@@ -1,3 +1,5 @@
+# วิ่งดี VingDee — ไกด์ซื้อของวิ่งแบบคุ้มค่า (static site)
+
 # เปรียบเทียบอุปกรณ์กีฬา (Sports equipment comparison, Thailand)
 
 Static, neutral price-comparison catalog built from public product data of Thai sports retailers.

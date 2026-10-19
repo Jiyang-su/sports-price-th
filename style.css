@@ -40,3 +40,37 @@ footer.f{border-top:1px solid var(--line);padding:40px 5vw 70px;color:var(--mut)
 
 .ship{font-size:11px;color:#b9c0c8;margin-top:6px;line-height:1.45}.ship span{color:#8a929c}
 .ship-t{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}.ship-t th,.ship-t td{border-bottom:1px solid #2a2f36;padding:8px;text-align:left;vertical-align:top}.ship-t th{color:#ff7a1a;font-weight:600}
+/* v8: one-line mobile nav — logo fixed, links scroll horizontally, fixed height (no layout jump) */
+@media(max-width:900px){nav.top{flex-wrap:nowrap;gap:14px;height:48px;padding:0 0 0 4vw;box-sizing:border-box}nav.top>a.up{flex:0 0 auto;font-size:12px;white-space:nowrap}
+nav.top .links{flex:1 1 auto;min-width:0;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:16px;padding:0 28px 0 2px;height:48px;align-items:center;font-size:12.5px;-webkit-mask-image:linear-gradient(90deg,#000 85%,#0000);mask-image:linear-gradient(90deg,#000 85%,#0000)}
+nav.top .links::-webkit-scrollbar{display:none}nav.top .links a{white-space:nowrap;flex:0 0 auto;padding:6px 0}}
+/* v8 home: lifestyle-first */
+.hscroll{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+.evc{flex:0 0 260px;scroll-snap-align:start;display:flex;gap:14px;align-items:center;background:var(--card);border-radius:6px;padding:14px;text-decoration:none;border-left:3px solid #ff7a1a}
+.evd{text-align:center;min-width:56px;font-size:12px;color:#cfd4da}.evd b{display:block;font-size:28px;color:#fff;line-height:1}
+.stories{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.story{display:block;background:var(--card);border-radius:6px;padding:20px;text-decoration:none;transition:background .2s}.story:hover{background:var(--card2)}.story .kick{color:#ff7a1a;font-size:11px}.story h3{margin:8px 0;font-size:19px}.story p{margin:0;color:#cfd4da;font-size:14px}
+.life{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.ltile{position:relative;min-height:360px;border-radius:6px;overflow:hidden;background:#000 center/cover;display:flex;align-items:flex-end}
+.ltile:before{content:"";position:absolute;inset:0;background:linear-gradient(#0d0f1210 25%,#0d0f12f2 78%)}
+.ltile .cover{position:absolute;inset:0}.lt-in{position:relative;padding:20px;pointer-events:none}.lt-in a,.lt-in .aff-i{pointer-events:auto}
+.lt-in h3{margin:0 0 6px;font-size:23px}.lt-in p{margin:0 0 12px;color:#d5d9de;font-size:14px}
+.mini{font-size:12px;color:#cfd4da;line-height:1.5;border-top:1px solid #ffffff22;padding-top:8px}.mini a{color:#fff}.mini span{color:#9aa4b2}.mini .aff-i{margin-top:4px;font-size:11px;color:#8a929c}
+.lt-in .more{display:inline-block;margin-top:10px;color:#ff7a1a;font-weight:600;text-decoration:none;font-size:14px}
+@media(max-width:700px){.home-hero h1{font-size:44px}.ltile{min-height:330px}.evc{flex-basis:78vw}}
+
+/* v9 trust */
+.trust{margin-top:6px;font-size:11px;color:#8a929c;line-height:1.45}.chk{margin-top:2px}.pc{display:inline-block;font-size:11px;padding:1px 6px;border:1px solid #2a2f36;border-radius:3px;color:#b9c0c8}.pc.a{border-color:#ff7a1a;color:#ffb27a}
+.rep{margin-top:4px;background:none;border:0;padding:2px 0;color:#8a929c;font-size:11px;text-decoration:underline;cursor:pointer}.rep:disabled{color:#6fbf73;text-decoration:none}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,140%);width:min(92vw,520px);box-sizing:border-box;background:#1b1f25;color:#fff;border:1px solid #ff7a1a;border-radius:6px;padding:12px 16px;font-size:14px;z-index:99;transition:transform .3s}#toast.on{transform:translate(-50%,0)}
+.flinks{margin:10px 0 4px}.todo{color:#ffcf66}.advice{border-left:3px solid #ff7a1a;background:var(--card);padding:14px 18px;border-radius:4px;margin:18px 0}.advice h3{margin:0 0 6px;font-size:16px}.advice ul{margin:0;padding-left:18px;color:#cfd4da;font-size:14px}
+.tsec h2{margin-top:0}.tsec ul{color:#cfd4da}.clog li{margin-bottom:8px}
+
+/* v9b compact card details */
+.cl{display:none;font-size:11px;color:#b9c0c8;margin-top:6px;line-height:1.5}.dt{background:none;border:0;padding:0 0 0 4px;color:#ff9a4d;font-size:11px;text-decoration:underline;cursor:pointer}
+@media(max-width:700px){.cl{display:block}.dx{display:none}.dx.open{display:block}}
+
+/* v10 brand logo in nav */
+nav.top a.brand{display:flex;align-items:center;flex:0 0 auto;opacity:1;box-shadow:none!important}nav.top a.brand img{display:block;height:32px;width:auto}nav.top a.brand .bicon{display:none}
+@media(max-width:900px){nav.top a.brand img.bfull{height:28px}}
+@media(max-width:360px){nav.top a.brand .bfull{display:none}nav.top a.brand .bicon{display:block;height:30px}}
