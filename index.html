@@ -1,66 +1,16 @@
-<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="เปรียบเทียบราคาอุปกรณ์กีฬากว่า 17,836 รายการ จากหลายร้านในไทย ทั้งวิ่ง ฟุตบอล แบดมินตัน ฟิตเนส จักรยาน ว่ายน้ำ เทนนิส แคมป์ปิ้ง แยกระดับราคา ประหยัด กลาง พรีเมียม">
-<meta name="keywords" content="เปรียบเทียบราคา,อุปกรณ์กีฬา,รองเท้าวิ่ง,ไม้แบด,ฟิตเนส,จักรยาน,ราคาถูก">
-<meta property="og:title" content="เปรียบเทียบอุปกรณ์กีฬา"><meta property="og:description" content="เทียบราคาอุปกรณ์กีฬาจากหลายร้านในไทย แบบเป็นกลาง">
-<meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><title>เปรียบเทียบอุปกรณ์กีฬา</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,"Noto Sans Thai",sans-serif;background:#f4f6f8;color:#222}
-header{background:#0b5cad;color:#fff;padding:12px 16px}h1{margin:0;font-size:20px}header small{opacity:.85}
-.bar{display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 1px 4px #0002}
-.bar input,.bar select{padding:8px;border:1px solid #ccc;border-radius:8px;font-size:14px}#q{flex:1 1 220px}.bar .num{width:100px}
-#info{padding:6px 16px;color:#555;font-size:14px}
-#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;padding:0 16px 90px}
-.card{background:#fff;border-radius:10px;padding:8px;display:flex;flex-direction:column;box-shadow:0 1px 3px #0001}
-.card img{width:100%;aspect-ratio:1;object-fit:contain;background:#fafafa;border-radius:6px}
-.nm{font-size:13px;margin:6px 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:3.6em}
-.meta{font-size:12px;color:#666}.pr{font-weight:700;color:#d0021b;font-size:16px}.old{text-decoration:line-through;color:#999;font-size:12px;margin-left:4px}
-.tag{display:inline-block;background:#e8f0fb;color:#0b5cad;border-radius:5px;padding:1px 6px;font-size:11px;margin:2px 2px 0 0}
-.multi{background:#fff3cd;color:#8a6100}.row{display:flex;gap:6px;margin-top:auto;padding-top:6px}
-.row a,.row label{flex:1;text-align:center;font-size:12px;padding:6px;border-radius:6px;border:1px solid #0b5cad;color:#0b5cad;text-decoration:none;cursor:pointer}
-#cmpbar{position:fixed;bottom:0;left:0;right:0;background:#222;color:#fff;padding:10px 16px;display:none;align-items:center;gap:10px}
-#cmpbar button{padding:8px 14px;border:0;border-radius:8px;background:#ffb400;font-weight:700}
-#modal{position:fixed;inset:0;background:#0008;display:none;z-index:10;overflow:auto;padding:16px}
-#modal .box{background:#fff;border-radius:10px;padding:12px;max-width:1000px;margin:auto;overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #ddd;padding:6px;vertical-align:top;min-width:140px}th{background:#f0f3f7;text-align:left;min-width:80px}
-td img{width:120px}#more{display:block;margin:0 auto 90px;padding:10px 24px;border-radius:8px;border:1px solid #0b5cad;background:#fff}
-</style></head><body>
-<header><h1>🏸⚽ เปรียบเทียบอุปกรณ์กีฬา</h1><a href="running-shoe-finder.html" style="display:inline-block;margin:6px 0;padding:6px 12px;background:#ffb400;color:#222;border-radius:20px;font-weight:700;text-decoration:none">👟 ตัวช่วยเลือกรองเท้าวิ่ง →</a><br><small>ข้อมูลจริงจากเว็บร้านค้า · ราคาอาจเปลี่ยนแปลง โปรดตรวจสอบที่หน้าร้านก่อนซื้อ</small></header>
-<div class="bar"><input id="q" placeholder="ค้นหาสินค้า ยี่ห้อ…"><select id="cat"><option value="">ทุกหมวด</option></select>
-<select id="brand"><option value="">ทุกยี่ห้อ</option></select><select id="store"><option value="">ทุกร้าน</option></select>
-<input id="min" class="num" type="number" placeholder="ราคาต่ำสุด"><input id="max" class="num" type="number" placeholder="ราคาสูงสุด">
-<select id="sort"><option value="">เรียงตาม: แนะนำ</option><option value="asc">ราคา ต่ำ→สูง</option><option value="desc">ราคา สูง→ต่ำ</option></select>
-<select id="tier"><option value="">ทุกระดับราคา</option><option>ประหยัด</option><option>กลาง</option><option>พรีเมียม</option></select><button id="distbtn" style="padding:8px;border-radius:8px;border:1px solid #0b5cad;background:#fff">📊 ช่วงราคาแต่ละหมวด</button><label style="font-size:13px;align-self:center"><input type="checkbox" id="onlysale"> ลดราคา</label></div>
-<div id="info"></div><div id="grid"></div><button id="more">แสดงเพิ่ม</button>
-<footer style="padding:16px;font-size:12px;color:#666;text-align:center;margin-bottom:60px">หมายเหตุ: ลิงก์บางส่วนอาจเป็นลิงก์พันธมิตร (affiliate) ซึ่งเว็บไซต์อาจได้รับค่าตอบแทนเมื่อมีการซื้อ แต่ไม่มีผลต่อการจัดอันดับหรือการเรียงลำดับสินค้า · ราคาเป็นราคา ณ วันที่เก็บข้อมูลที่แสดงในแต่ละรายการ และอาจเปลี่ยนแปลงได้ · การสั่งซื้อ การจัดส่ง และการคืนสินค้า ดำเนินการโดยร้านค้าแต่ละร้านโดยตรง กรุณาติดต่อร้านค้า · ระดับราคาคำนวณจากราคาในหมวดเดียวกัน (ประหยัด = ถูกสุด 1 ใน 3, พรีเมียม = แพงสุด 1 ใน 3)</footer>
-<div id="dist" style="position:fixed;inset:0;background:#0008;display:none;z-index:10;overflow:auto;padding:16px"><div class="box" style="background:#fff;border-radius:10px;padding:12px;max-width:900px;margin:auto"><button onclick="dist.style.display='none'" style="float:right">✕ ปิด</button><h3>การกระจายราคาในแต่ละหมวด</h3><div id="disttbl"></div></div></div>
-<div id="cmpbar"><span id="cmpn"></span><button id="cmpgo">เปรียบเทียบ</button><button id="cmpclr" style="background:#888;color:#fff">ล้าง</button></div>
-<div id="modal"><div class="box"><button onclick="modal.style.display='none'" style="float:right">✕ ปิด</button><h3>เปรียบเทียบสินค้า</h3><div id="cmptbl"></div></div></div>
-<script>document.getElementById('info').textContent='กำลังโหลดข้อมูล…';fetch('data.json').then(r=>r.json()).then(J=>{
-const D=J.products,STORES=J.stores;const $=id=>document.getElementById(id);const eff=p=>p.sale_price??p.price;
-const fmt=n=>'฿'+Number(n).toLocaleString('th-TH');let sel=[],shown=60,list=[];
-function fill(id,vals){const s=$(id);[...new Set(vals)].sort((a,b)=>a.localeCompare(b,'th')).forEach(v=>{const o=document.createElement('option');o.value=o.textContent=v;s.appendChild(o)})}
-fill('cat',D.map(p=>p.category));fill('brand',D.map(p=>p.brand).filter(Boolean));fill('store',D.map(p=>p.store));
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function apply(){const q=$('q').value.toLowerCase().trim().split(/\s+/).filter(Boolean),c=$('cat').value,b=$('brand').value,s=$('store').value,mn=+$('min').value||0,mx=+$('max').value||1e12,os=$('onlysale').checked;
-list=D.filter(p=>(!c||p.category==c)&&(!b||p.brand==b)&&(!s||p.store==s)&&eff(p)>=mn&&eff(p)<=mx&&(!os||p.sale_price)&&(!$('tier').value||p.price_tier==$('tier').value)&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)));
-const so=$('sort').value;if(so)list.sort((x,y)=>so=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=60;render()}
-function render(){$('info').textContent=`พบ ${list.length.toLocaleString()} รายการ จากทั้งหมด ${D.length.toLocaleString()}`;
-$('grid').innerHTML=list.slice(0,shown).map(p=>`<div class="card"><img loading="lazy" src="${esc(p.image)}" alt=""><div class="nm" title="${esc(p.name)}">${esc(p.name)}</div>
-<div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div>
-<div class="meta">${esc(p.brand)} · <span title="วันที่เก็บข้อมูล">ข้อมูล ณ ${p.scraped}</span></div><div><span class="tag">${esc(p.store)}</span><span class="tag">${esc(p.category)}</span><span class="tag" style="background:${{'ประหยัด':'#e3f6e8','กลาง':'#eef','พรีเมียม':'#fbe9f3'}[p.price_tier]}">${p.price_tier}</span>${p.group_stores>1?`<span class="tag multi" onclick="grp(${p.group_id})" style="cursor:pointer">มี ${p.group_stores} ร้าน</span>`:''}</div>
-<div class="row"><label><input type="checkbox" ${sel.includes(p.id)?'checked':''} onchange="tog(${p.id},this)"> เทียบ</label><a href="${esc(p.link||p.url)}" target="_blank" rel="noopener sponsored">ดูที่ร้าน</a></div></div>`).join('');
-$('more').style.display=shown<list.length?'block':'none'}
-function grp(g){$('q').value='';list=D.filter(p=>p.group_id==g).sort((a,b)=>eff(a)-eff(b));shown=60;render()}
-function tog(id,el){if(el.checked){if(sel.length>=4){el.checked=false;alert('เลือกเปรียบเทียบได้สูงสุด 4 รายการ');return}sel.push(id)}else sel=sel.filter(x=>x!=id);bar()}
-function bar(){$('cmpbar').style.display=sel.length?'flex':'none';$('cmpn').textContent=`เลือกแล้ว ${sel.length}/4`}
-$('cmpgo').onclick=()=>{const P=sel.map(i=>D.find(p=>p.id==i));const r=(h,f)=>`<tr><th>${h}</th>${P.map(p=>`<td>${f(p)}</td>`).join('')}</tr>`;
-const lo=Math.min(...P.map(eff));$('cmptbl').innerHTML=`<table>${r('รูป',p=>`<img src="${esc(p.image)}">`)}${r('ชื่อ',p=>esc(p.name))}${r('ยี่ห้อ',p=>esc(p.brand))}${r('หมวด',p=>esc(p.category))}
-${r('ราคา',p=>`<b style="color:${eff(p)==lo?'#0a8a2a':'#d0021b'}">${fmt(eff(p))}</b>${eff(p)==lo&&P.length>1?' ✅ ถูกสุด':''}`)}${r('ราคาปกติ',p=>fmt(p.price))}${r('ระดับราคา',p=>p.price_tier+(p.brand_tier?' · แบรนด์'+p.brand_tier:''))}${r('ร้าน',p=>esc(p.store)+'<br><small>'+esc((STORES[p.store]||{}).type||'')+'</small>')}${r('ลิงก์',p=>`<a href="${esc(p.link||p.url)}" target="_blank" rel="noopener sponsored">ดูที่ร้าน</a>`)}${r('วันที่เก็บข้อมูล',p=>p.scraped)}</table>`;$('modal').style.display='block'};
-$('distbtn').onclick=()=>{const cats=[...new Set(D.map(p=>p.category))];const q=(a,f)=>a[Math.min(a.length-1,Math.floor(a.length*f))];
-const rows=cats.map(c=>{const a=D.filter(p=>p.category==c).map(eff).sort((x,y)=>x-y);return{c,n:a.length,a}}).sort((x,y)=>y.n-x.n);const M=Math.max(...rows.map(r=>q(r.a,.95)));
-$('disttbl').innerHTML='<table><tr><th>หมวด</th><th>จำนวน</th><th>ประหยัด ≤</th><th>กลาง ≤</th><th>มัธยฐาน</th><th>ช่วงราคา (5%–95%)</th></tr>'+rows.map(r=>{const p5=q(r.a,.05),p33=q(r.a,1/3),p67=q(r.a,2/3),p95=q(r.a,.95),w=v=>Math.min(100,v/M*100);
-return `<tr style="cursor:pointer" onclick="$('cat').value='${r.c}';dist.style.display='none';apply()"><td>${r.c}</td><td>${r.n}</td><td>${fmt(p33)}</td><td>${fmt(p67)}</td><td>${fmt(q(r.a,.5))}</td><td style="min-width:220px"><div style="position:relative;height:14px;background:#eee;border-radius:7px"><div style="position:absolute;left:${w(p5)}%;width:${Math.max(1,w(p33)-w(p5))}%;height:100%;background:#7bc88a"></div><div style="position:absolute;left:${w(p33)}%;width:${Math.max(1,w(p67)-w(p33))}%;height:100%;background:#8fa3e8"></div><div style="position:absolute;left:${w(p67)}%;width:${Math.max(1,w(p95)-w(p67))}%;height:100%;background:#e89bc4"></div></div><small>${fmt(p5)} – ${fmt(p95)}</small></td></tr>`}).join('')+'</table><p><small>🟩 ประหยัด 🟦 กลาง 🟪 พรีเมียม · คลิกแถวเพื่อดูสินค้าในหมวดนั้น</small></p>';dist.style.display='block'};
-$('cmpclr').onclick=()=>{sel=[];bar();render()};$('more').onclick=()=>{shown+=60;render()};
-['q','cat','brand','store','min','max','sort','onlysale','tier'].forEach(i=>$(i).addEventListener('input',apply));apply();
-
-Object.assign(window,{tog,grp,apply,$});}).catch(e=>{document.getElementById('info').textContent='โหลดข้อมูลไม่สำเร็จ'});</script></body></html>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ผู้ช่วยเลือกอุปกรณ์กีฬา</title>
+<meta name="description" content="ช่วยเลือกอุปกรณ์กีฬาที่เหมาะกับคุณ รองเท้าวิ่ง ชุดแบดมินตันมือใหม่ พร้อมเหตุผลที่เข้าใจง่าย"><meta property="og:title" content="ผู้ช่วยเลือกอุปกรณ์กีฬา"><meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta name="theme-color" content="#0b5cad">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="common.js"></script></head><body><header class="hero" style="background-image:url(img/forest-run.jpg);background-position:60% 50%"><div class="kick up">ผู้ช่วยเลือกอุปกรณ์กีฬา · เป็นกลาง</div>
+<h1>ไม่ต้องรู้ทุกรุ่น<br>ก็เลือกได้ถูกตัว</h1><p>ตอบไม่กี่คำถาม แล้วเราจะช่วยเลือกอุปกรณ์ที่เหมาะกับระดับ การใช้งาน และงบของคุณ พร้อมเหตุผลที่อ่านเข้าใจง่าย</p>
+<div class="cta"><a class="btn solid" href="running-shoe-finder.html" style="--acc:#ff7a1a">เลือกรองเท้าวิ่ง</a><a class="btn" href="badminton-kit.html">จัดชุดแบดมินตันมือใหม่</a></div></header>
+<section class="sec"><h2>ตัวช่วยเลือก</h2><p class="lead">เริ่มจากสิ่งที่คุณจะทำ ไม่ใช่จากชื่อรุ่น</p><div class="tiles">
+<a class="tile" href="running-shoe-finder.html" style="--acc:#ff7a1a;background-image:url(img/trail.jpg)"><div class="kick up" style="color:#ff7a1a">วิ่ง</div><h3>ตัวช่วยเลือกรองเท้าวิ่ง</h3><p>5 คำถาม · ถนน / เทรล · ความนุ่ม · งบ</p></a>
+<a class="tile" href="badminton-kit.html" style="--acc:#2ecc71;background-image:url(img/badminton2.jpg)"><div class="kick up" style="color:#2ecc71">แบดมินตัน</div><h3>ชุดเริ่มต้นแบดมินตัน</h3><p>ไม้ รองเท้า ลูก และกริป ในงบที่ตั้งไว้</p></a></div></section>
+<section class="sec"><h2>ความรู้ก่อนซื้อ</h2><div class="tiles">
+<a class="tile plain" href="insights.html#gen" style="--acc:#ff7a1a"><h3>รุ่นเก่า vs รุ่นใหม่</h3><p>รุ่นก่อนหน้าที่ยังขายอยู่ ถูกกว่าแค่ไหน</p></a>
+<a class="tile plain" href="insights.html#size" style="--acc:#3fa9ff"><h3>ไกด์ไซซ์รองเท้า</h3><p>ตารางไซซ์จากแบรนด์อย่างเป็นทางการ</p></a>
+<a class="tile plain" href="events.html" style="--acc:#ff7a1a"><h3>ปฏิทินงานวิ่ง</h3><p>งานวิ่ง พ.ย. 2569 – ม.ค. 2570 พร้อมสิ่งที่ต้องเตรียม</p></a>
+<a class="tile plain" href="catalog.html" style="--acc:#9aa4b2"><h3>สินค้าทั้งหมด</h3><p>เลือกดูตามหมวด พร้อมเริ่มติดตามประวัติราคา</p></a></div></section>
+</body></html>
