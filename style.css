@@ -74,3 +74,5 @@ nav.top .links::-webkit-scrollbar{display:none}nav.top .links a{white-space:nowr
 nav.top a.brand{display:flex;align-items:center;flex:0 0 auto;opacity:1;box-shadow:none!important}nav.top a.brand img{display:block;height:32px;width:auto}nav.top a.brand .bicon{display:none}
 @media(max-width:900px){nav.top a.brand img.bfull{height:28px}}
 @media(max-width:360px){nav.top a.brand .bfull{display:none}nav.top a.brand .bicon{display:block;height:30px}}
+
+.linebtn{display:inline-flex;align-items:center;gap:8px;margin:6px 0;padding:9px 16px;border:1px solid #06C755;color:#06C755;border-radius:3px;text-decoration:none;font-size:14px;font-weight:600;transition:background .2s,color .2s}.linebtn:hover,.linebtn:focus-visible{background:#06C755;color:#fff;outline:none}.linebtn .ld{width:8px;height:8px;border-radius:50%;background:#06C755}.linebtn:hover .ld{background:#fff}.contactbox{background:var(--card);border-left:3px solid var(--acc);border-radius:4px;padding:14px 18px;margin-top:18px}.contactbox h3{margin:0 0 6px;font-size:16px}.contactbox p{margin:0 0 6px;color:#cfd4da;font-size:14px}
