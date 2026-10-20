@@ -5,17 +5,17 @@
 <link rel="canonical" href="https://vingdee.com/catalog.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><script src="config.js"></script><script src="track.js"></script><script src="common.js"></script></head><body><section class="sec" style="border:0"><div class="kick up" style="color:#ff7a1a">อุปกรณ์วิ่ง</div><h2>อุปกรณ์การวิ่งทั้งหมด</h2><p class="lead" id="info">กำลังโหลด…</p>
+<link rel="stylesheet" href="style.css"><script src="config.js"></script><script src="track.js"></script><script src="common.js"></script><script src="guides.js"></script></head><body><section class="sec" style="border:0"><div class="kick up" style="color:#ff7a1a">อุปกรณ์วิ่ง</div><h2>อุปกรณ์การวิ่งทั้งหมด</h2><p class="lead" id="info">กำลังโหลด…</p>
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:18px">
 <input id="q" placeholder="ค้นหา…" aria-label="ค้นหา"><select id="cat" aria-label="หมวด"><option value="">ทุกประเภท</option></select><select id="tier" aria-label="ระดับราคา"><option value="">ทุกระดับราคา</option><option>ประหยัด</option><option>กลาง</option><option>พรีเมียม</option></select>
 <select id="brand" aria-label="ยี่ห้อ"><option value="">ทุกยี่ห้อ</option></select><input id="max" type="number" placeholder="ราคาไม่เกิน (บาท)" aria-label="ราคาไม่เกิน"><select id="sort" aria-label="เรียง"><option value="">ตามลำดับข้อมูล</option><option value="asc">ราคา ต่ำ → สูง</option><option value="desc">ราคา สูง → ต่ำ</option></select></div>
-<div class="grid" id="grid"></div><p style="text-align:center"><button class="btn" id="more">แสดงเพิ่ม</button></p></section>
+<div id="guide"></div><div class="grid" id="grid"></div><p style="text-align:center"><button class="btn" id="more">แสดงเพิ่ม</button></p></section>
 <script>
 let D=[],L=[],shown=48;const eff=p=>p.sale_price??p.price;
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{const best={};J.products.forEach(p=>{const g=best[p.group_id];if(!g||eff(p)<eff(g))best[p.group_id]=p});D=J.products.filter(p=>best[p.group_id]===p);
  const fill=(id,v)=>[...new Set(v)].sort((a,b)=>a.localeCompare(b,'th')).forEach(x=>$(id).insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`));fill('cat',D.map(p=>p.sub));fill('brand',D.map(p=>p.brand).filter(Boolean));
  const c=new URLSearchParams(location.search).get('sub');if(c){$('cat').value=c;document.querySelector('h2').textContent=c}histP.then(apply)});
-function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean),c=$('cat').value,t=$('tier').value,b=$('brand').value,mx=+$('max').value||1e12;
+function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean),c=$('cat').value,_g=SUB2G[c];$('guide').innerHTML=_g?guideBlock(_g,'catalog'):'';t=$('tier').value,b=$('brand').value,mx=+$('max').value||1e12;
  L=D.filter(p=>(!c||p.sub==c)&&(!t||p.price_tier==t)&&(!b||p.brand==b)&&eff(p)<=mx&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)));const s=$('sort').value;if(s)L.sort((x,y)=>s=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=48;render()}
 function render(){$('info').textContent=`${L.length.toLocaleString()} รายการ · แตะสินค้าเพื่อดูประวัติราคาและรีวิว`;
  $('grid').innerHTML=L.slice(0,shown).map(p=>{const pi=priceInfo(p.url,eff(p));return `<article class="card" style="--acc:${acc(p.category)};cursor:pointer" onclick="openProduct(D[${D.indexOf(p)}])" tabindex="0"><img class="pi" loading="lazy" src="${esc(p.image)}" alt=""><div class="nm">${esc(p.name)}</div>
