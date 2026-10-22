@@ -31,7 +31,8 @@ function perKm(e){return `<div class="km" title="ประมาณการ: �
 // v6: outbound shop links — rel + disclosure label + tracking attributes in ONE place
 const AFF=new Set((window.SITE_CONFIG||{}).AFFILIATE_STORES||[]);
 const relFor=store=>AFF.has(store)?'sponsored nofollow noopener':'nofollow noopener';
-const AFF_LBL='<div class="aff" onclick="event.stopPropagation()">ลิงก์ร้านค้า · บางลิงก์วิ่งดีได้ค่าคอมเล็กน้อย ราคาเท่าเดิม · <a href="about.html">เว็บนี้หารายได้อย่างไร</a></div>';
+const isAffLink=(u,st)=>!!(prodAff(u)||PTPL[st]);
+function affLbl(u,st,tag='div',cls='aff'){return isAffLink(u,st)?`<${tag} class="${cls}" onclick="event.stopPropagation()">ขอบคุณที่สนับสนุนวิ่งดี · <a href="about.html">เว็บนี้หารายได้อย่างไร</a></${tag}>`:''}
 // v14: generic affiliate mechanism. PRODUCT_TPL[store] = product URL template ({url} or {url_enc}); STORE_LINKS[store].aff = store-level (homepage) affiliate link.
 const PTPL=(window.SITE_CONFIG||{}).PRODUCT_TPL||{},SLINK=(window.SITE_CONFIG||{}).STORE_LINKS||{};
 const PAFF=(window.SITE_CONFIG||{}).PRODUCT_AFF||{};
@@ -71,4 +72,4 @@ function trustBits(url,store){return `<div class="trust"><span class="pcx" data-
 // v9b: compact line on mobile; full details behind a toggle (desktop always shows details)
 function compactLine(store){const s=SHIP[store],t=UPD[store];return `<div class="cl">🚚 ${s&&s.days_bkk?esc(s.days_bkk)+' วัน':'ดูที่ร้าน'} · เช็กราคา ${t?thDT(t):'—'} <button type="button" class="dt" aria-expanded="false" onclick="event.stopPropagation();toggleDx(this)">รายละเอียด</button></div>`}
 function toggleDx(b){const d=b.closest('.cl').nextElementSibling,o=!d.classList.contains('open');d.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.textContent=o?'ซ่อน':'รายละเอียด'}
-function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-align:center',text='ไปที่หน้าร้าน'){return shopA(url,store,pos,text,cls,style)+AFF_LBL+compactLine(store)+`<div class="dx">${shipLine(store)}${trustBits(url,store)}</div>`}
+function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-align:center',text='ไปที่หน้าร้าน'){return shopA(url,store,pos,text,cls,style)+affLbl(url,store)+compactLine(store)+`<div class="dx">${shipLine(store)}${trustBits(url,store)}</div>`}

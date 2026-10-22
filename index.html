@@ -5,7 +5,7 @@
 <link rel="canonical" href="https://vingdee.com/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><script src="config.js"></script><script src="track.js"></script><script src="common.js"></script><script src="guides.js"></script></head><body><script src="events-data.js"></script>
+<link rel="stylesheet" href="style.css?v=1792661459"><script src="config.js?v=1792661459"></script><script src="track.js?v=1792661459"></script><script src="common.js?v=1792661459"></script><script src="guides.js?v=1792661459"></script></head><body><script src="events-data.js?v=1792661459"></script>
 <header class="hero home-hero" style="background-image:url(img/hero-coast.jpg);background-position:70% 60%;min-height:100svh"><div class="kick up" style="color:#ff7a1a">วิ่งได้ทุกคน · เริ่มได้วันนี้</div>
 <h1>วิ่งดี<br>ไม่ต้องแพง</h1><p>ลมทะเล ทางเลียบน้ำ หรือสวนใกล้บ้าน ไม่ต้องเร็ว ไม่ต้องไกล ออกไปวิ่งด้วยกันเถอะ</p>
 <div class="cta"><a class="btn acc" href="#life">คุณวิ่งแบบไหน?</a><a class="btn solid" href="#ev-strip">งานวิ่งเร็วๆ นี้</a></div></header>
@@ -25,7 +25,7 @@ const IMG={start:['img/forest-run.jpg','50% 50%'],sun:['img/hero-coast.jpg','30%
 function shortShip(st){const s=SHIP[st];return s&&s.days_bkk?`ส่ง ${s.days_bkk} วันทำการ (ตามที่ร้านแจ้ง)`:'การจัดส่ง: ดูเงื่อนไขที่ร้าน'}
 fetch('situations.json').then(r=>r.json()).then(S=>{$('lt').innerHTML=S.map(s=>{const im=IMG[s.k]||IMG.start,P=s.picks.slice(0,2);
  return `<div class="ltile" style="background-image:url(${im[0]});background-position:${im[1]}"><a class="cover" href="${s.href}" data-tile="${s.href.split(/[.#]/)[0]}" aria-label="${esc(s.t)}"></a><div class="lt-in"><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p>
- <div class="mini">${P.map(x=>`<div>เช่น ${shopA(x.u,x.s,'situation-'+s.k,esc(x.n.length>34?x.n.slice(0,34)+'…':x.n)+' <b>'+fmt(x.e)+'</b>')} <span>· ${esc(x.s)} · ${shortShip(x.s)}</span></div>`).join('')}<div class="aff-i">ลิงก์ร้านค้า · บางลิงก์วิ่งดีได้ค่าคอมเล็กน้อย ราคาเท่าเดิม · <a href="about.html">เว็บนี้หารายได้อย่างไร</a></div></div>
+ <div class="mini">${P.map(x=>`<div>เช่น ${shopA(x.u,x.s,'situation-'+s.k,esc(x.n.length>34?x.n.slice(0,34)+'…':x.n)+' <b>'+fmt(x.e)+'</b>')} <span>· ${esc(x.s)} · ${shortShip(x.s)}</span></div>`).join('')}${P.map(x=>affLbl(x.u,x.s,'div','aff-i')).find(Boolean)||''}</div>
  <a class="more" href="${s.href}">${esc(s.more)} →</a> <a class="more gread" href="guides.html#${SIT2G[s.k]}" data-tile="guide-${s.k}" style="margin-left:12px;color:#fff">อ่านก่อนเลือก</a></div></div>`}).join('')}).catch(()=>{});
 </script>
 </body></html>
