@@ -73,3 +73,16 @@ function trustBits(url,store){return `<div class="trust"><span class="pcx" data-
 function compactLine(store){const s=SHIP[store],t=UPD[store];return `<div class="cl">🚚 ${s&&s.days_bkk?esc(s.days_bkk)+' วัน':'ดูที่ร้าน'} · เช็กราคา ${t?thDT(t):'—'} <button type="button" class="dt" aria-expanded="false" onclick="event.stopPropagation();toggleDx(this)">รายละเอียด</button></div>`}
 function toggleDx(b){const d=b.closest('.cl').nextElementSibling,o=!d.classList.contains('open');d.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.textContent=o?'ซ่อน':'รายละเอียด'}
 function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-align:center',text='ไปที่หน้าร้าน'){return shopA(url,store,pos,text,cls,style)+affLbl(url,store)+compactLine(store)+`<div class="dx">${shipLine(store)}${trustBits(url,store)}</div>`}
+// v23: install to home screen (footer button; Android uses beforeinstallprompt, iOS shows a tip). Hidden when standalone/installed.
+(function(){const SA=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+ if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+ let ev=null;const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!/crios|fxios/i.test(navigator.userAgent);
+ function box(){let b=document.getElementById('a2hs');if(b)return b;const f=document.querySelector('footer.f');if(!f)return null;
+  f.insertAdjacentHTML('beforeend','<div id="a2hs" hidden style="margin-top:12px"><button type="button" class="btn sm" id="a2hsBtn" style="color:#fff;background:transparent;border:1px solid #ff7a1a">📲 เพิ่มวิ่งดีลงหน้าจอ</button><span class="meta" id="a2hsNote" style="display:block;margin-top:6px">เปิดวิ่งดีได้ในแตะเดียว ไม่ต้องโหลดแอปจาก App Store หรือ Play Store ไม่ขอสิทธิ์เข้าถึงข้อมูลในเครื่อง ลบได้เหมือนไอคอนทั่วไป</span><span id="a2hsTip" class="meta" hidden style="display:block;margin-top:6px">บน iPhone: แตะปุ่มแชร์ (สี่เหลี่ยมมีลูกศรขึ้น) แล้วเลือก “เพิ่มไปยังหน้าจอโฮม”</span></div>');
+  document.getElementById('a2hsBtn').onclick=async()=>{if(ev){ev.prompt();const r=await ev.userChoice;ev=null;if(r.outcome==='accepted')hide()}else document.getElementById('a2hsTip').hidden=false};return document.getElementById('a2hs')}
+ function show(){if(SA||localStorage.getItem('vd_installed'))return;const b=box();if(b)b.hidden=false}
+ function hide(){const b=document.getElementById('a2hs');if(b)b.hidden=true}
+ addEventListener('beforeinstallprompt',e=>{e.preventDefault();ev=e;show()});
+ addEventListener('appinstalled',()=>{try{localStorage.setItem('vd_installed','1')}catch(e){}hide()});
+ addEventListener('DOMContentLoaded',()=>{box();if(ios&&!SA)show()});if(document.readyState!=='loading'){box();if(ios&&!SA)show()}
+ window.__a2hs={show,hide}})();
