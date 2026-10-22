@@ -9,7 +9,7 @@
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:18px">
 <input id="q" placeholder="ค้นหา…" aria-label="ค้นหา"><select id="cat" aria-label="หมวด"><option value="">ทุกประเภท</option></select><select id="tier" aria-label="ระดับราคา"><option value="">ทุกระดับราคา</option><option>ประหยัด</option><option>กลาง</option><option>พรีเมียม</option></select>
 <select id="brand" aria-label="ยี่ห้อ"><option value="">ทุกยี่ห้อ</option></select><input id="max" type="number" placeholder="ราคาไม่เกิน (บาท)" aria-label="ราคาไม่เกิน"><select id="sort" aria-label="เรียง"><option value="">ตามลำดับข้อมูล</option><option value="asc">ราคา ต่ำ → สูง</option><option value="desc">ราคา สูง → ต่ำ</option></select></div>
-<div id="guide"></div><p class="meta" id="catdisc" style="margin:0 0 10px">ราคาตามที่ร้านแสดง · ลิงก์ร้านค้าบางลิงก์เป็น Affiliate ราคาเท่าเดิม</p><div class="grid calm" id="grid"></div><p style="text-align:center"><button class="btn" id="more">แสดงเพิ่ม</button></p></section>
+<div id="guide"></div><p class="meta" id="catdisc" style="margin:0 0 10px">ราคาตามที่ร้านแสดง · บางลิงก์วิ่งดีได้ค่าคอมเล็กน้อยจากร้าน คุณจ่ายราคาเท่าเดิม</p><div class="grid calm" id="grid"></div><p style="text-align:center"><button class="btn" id="more">แสดงเพิ่ม</button></p></section>
 <script>
 let D=[],L=[],shown=48;const eff=p=>p.sale_price??p.price;
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{const best={};J.products.forEach(p=>{const g=best[p.group_id];if(!g||eff(p)<eff(g))best[p.group_id]=p});D=J.products.filter(p=>best[p.group_id]===p);
