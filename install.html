@@ -1,0 +1,29 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>เพิ่มวิ่งดีลงหน้าจอมือถือ · วิ่งดี VingDee</title>
+<meta name="description" content="วิธีเพิ่มวิ่งดีลงหน้าจอโฮม บน Chrome Safari และ Microsoft Edge ไม่ต้องติดตั้งแอป"><meta name="application-name" content="วิ่งดี VingDee"><meta name="theme-color" content="#0d0f12">
+<meta property="og:type" content="website"><meta property="og:locale" content="th_TH"><meta property="og:site_name" content="วิ่งดี VingDee"><meta property="og:title" content="เพิ่มวิ่งดีลงหน้าจอมือถือ · วิ่งดี VingDee"><meta property="og:description" content="วิธีเพิ่มวิ่งดีลงหน้าจอโฮม บน Chrome Safari และ Microsoft Edge ไม่ต้องติดตั้งแอป"><meta property="og:url" content="https://vingdee.com/install.html"><meta property="og:image" content="https://vingdee.com/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="วิ่งดี VingDee · วิ่งดีไม่ต้องแพง">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="เพิ่มวิ่งดีลงหน้าจอมือถือ · วิ่งดี VingDee"><meta name="twitter:description" content="วิธีเพิ่มวิ่งดีลงหน้าจอโฮม บน Chrome Safari และ Microsoft Edge ไม่ต้องติดตั้งแอป"><meta name="twitter:image" content="https://vingdee.com/og.png">
+<link rel="canonical" href="https://vingdee.com/install.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0d0f12"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="วิ่งดี">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1792676667"><script src="config.js?v=1792676667"></script><script src="track.js?v=1792676667"></script><script src="common.js?v=1792676667"></script><script src="guides.js?v=1792676667"></script></head><body><section class="sec" style="border:0;max-width:720px"><div class="kick up" style="color:#ff7a1a">เพิ่มลงหน้าจอ</div><h2>เพิ่มวิ่งดีลงหน้าจอมือถือ</h2>
+<p class="lead">เปิดวิ่งดีได้ในแตะเดียว ไม่ต้องโหลดแอปจาก App Store หรือ Play Store ไม่ขอสิทธิ์เข้าถึงข้อมูลในเครื่อง ลบได้เหมือนไอคอนทั่วไป</p>
+<p><button type="button" class="btn acc" id="instBtn" hidden>📲 ติดตั้งวิ่งดี</button></p>
+<div id="steps"></div>
+<div class="card" style="margin-top:16px"><div class="nm">ลิงก์วิ่งดี</div><p class="meta" style="margin:6px 0">คัดลอกลิงก์ไปวางในเบราว์เซอร์อื่นได้</p><button type="button" class="btn sm" id="copyLink">คัดลอกลิงก์ vingdee.com</button> <span class="meta" id="copied" role="status"></span></div>
+</section>
+<script>
+const UA=navigator.userAgent,EDGE=/Edg(A|iOS)?\//.test(UA),IOS=/iphone|ipad|ipod/i.test(UA),AND=/android/i.test(UA),SA=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const S={
+ edgeAndroid:['<b>Microsoft Edge (Android)</b>','แตะเมนู ≡ หรือ … ด้านล่างจอ','เลือก “เพิ่มลงในโทรศัพท์” (Add to phone) — บางเวอร์ชันอยู่ในหัวข้อ “แอป” หรือใช้ “เพิ่มไปยังหน้าจอหลัก”','กด “ติดตั้ง” หรือ “เพิ่ม”'],
+ edgeIOS:['<b>Microsoft Edge (iPhone)</b>','แตะปุ่มแชร์ (สี่เหลี่ยมมีลูกศรขึ้น) หรือเมนู …','เลือก “เพิ่มไปยังหน้าจอโฮม”'],
+ edgeDesk:['<b>Microsoft Edge (คอมพิวเตอร์)</b>','คลิกเมนู … มุมขวาบน','เลือก “แอป” แล้ว “ติดตั้งไซต์นี้เป็นแอป”'],
+ ios:['<b>Safari (iPhone/iPad)</b>','แตะปุ่มแชร์ (สี่เหลี่ยมมีลูกศรขึ้น)','เลือก “เพิ่มไปยังหน้าจอโฮม” แล้วแตะ “เพิ่ม”'],
+ android:['<b>Chrome (Android)</b>','แตะปุ่ม “ติดตั้งวิ่งดี” ด้านบน ถ้ามี','หรือแตะเมนู ⋮ แล้วเลือก “ติดตั้งแอป” หรือ “เพิ่มลงในหน้าจอหลัก”']};
+const k=EDGE?(IOS?'edgeIOS':AND?'edgeAndroid':'edgeDesk'):IOS?'ios':'android';
+const ol=a=>`<div class="card" style="margin-top:12px" data-k="${a===S[k]?k:''}"><div>${a[0]}</div><ol>${a.slice(1).map(x=>`<li>${x}</li>`).join('')}</ol></div>`;
+$('steps').innerHTML=SA?'<p class="lead">✅ คุณเปิดวิ่งดีจากหน้าจอแล้ว</p>':ol(S[k])+(EDGE?'<p class="note" id="edgeNote" style="margin-top:10px">ถ้า Edge ไม่มีเมนูนี้ แนะนำเปิดใน Chrome (Android) หรือ Safari (iPhone) — กด “คัดลอกลิงก์” ด้านล่างแล้ววางในเบราว์เซอร์นั้น</p>':'')+`<details style="margin-top:12px"><summary class="meta">วิธีสำหรับเบราว์เซอร์อื่น</summary>${Object.keys(S).filter(x=>x!==k).map(x=>ol(S[x])).join('')}</details>`;
+let ev=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ev=e;$('instBtn').hidden=false});
+$('instBtn').onclick=async()=>{if(!ev)return;ev.prompt();await ev.userChoice;ev=null;$('instBtn').hidden=true};
+$('copyLink').onclick=async()=>{const u='https://vingdee.com/';try{await navigator.clipboard.writeText(u);$('copied').textContent='คัดลอกแล้ว ✓'}catch(e){prompt('คัดลอกลิงก์นี้',u)}};
+</script>
+</body></html>

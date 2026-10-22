@@ -89,3 +89,4 @@ nav.top a.brand{display:flex;align-items:center;flex:0 0 auto;opacity:1;box-shad
 
 /* v18 calm catalog: compact shop info at all widths */
 .calm .cl{display:block}.calm .dx{display:none}.calm .dx.open{display:block}.calm .card .meta{font-size:.82em}
+[hidden]{display:none!important}

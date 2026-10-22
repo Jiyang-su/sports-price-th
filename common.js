@@ -76,13 +76,13 @@ function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-alig
 // v23: install to home screen (footer button; Android uses beforeinstallprompt, iOS shows a tip). Hidden when standalone/installed.
 (function(){const SA=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
  if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
- let ev=null;const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!/crios|fxios/i.test(navigator.userAgent);
+ let ev=null;const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!/crios|fxios|edgios/i.test(navigator.userAgent),edge=/Edg(A|iOS)?\//.test(navigator.userAgent);
  function box(){let b=document.getElementById('a2hs');if(b)return b;const f=document.querySelector('footer.f');if(!f)return null;
-  f.insertAdjacentHTML('beforeend','<div id="a2hs" hidden style="margin-top:12px"><button type="button" class="btn sm" id="a2hsBtn" style="color:#fff;background:transparent;border:1px solid #ff7a1a">📲 เพิ่มวิ่งดีลงหน้าจอ</button><span class="meta" id="a2hsNote" style="display:block;margin-top:6px">เปิดวิ่งดีได้ในแตะเดียว ไม่ต้องโหลดแอปจาก App Store หรือ Play Store ไม่ขอสิทธิ์เข้าถึงข้อมูลในเครื่อง ลบได้เหมือนไอคอนทั่วไป</span><span id="a2hsTip" class="meta" hidden style="display:block;margin-top:6px">บน iPhone: แตะปุ่มแชร์ (สี่เหลี่ยมมีลูกศรขึ้น) แล้วเลือก “เพิ่มไปยังหน้าจอโฮม”</span></div>');
-  document.getElementById('a2hsBtn').onclick=async()=>{if(ev){ev.prompt();const r=await ev.userChoice;ev=null;if(r.outcome==='accepted')hide()}else document.getElementById('a2hsTip').hidden=false};return document.getElementById('a2hs')}
+  f.insertAdjacentHTML('beforeend','<div id="a2hs" hidden style="margin-top:12px"><button type="button" class="btn sm" id="a2hsBtn" style="color:#fff;background:transparent;border:1px solid #ff7a1a">📲 เพิ่มวิ่งดีลงหน้าจอ</button><span class="meta" id="a2hsNote" style="display:block;margin-top:6px">เปิดวิ่งดีได้ในแตะเดียว ไม่ต้องโหลดแอปจาก App Store หรือ Play Store ไม่ขอสิทธิ์เข้าถึงข้อมูลในเครื่อง ลบได้เหมือนไอคอนทั่วไป</span><span id="a2hsTip" class="meta" hidden style="display:block;margin-top:6px">บน iPhone: แตะปุ่มแชร์ (สี่เหลี่ยมมีลูกศรขึ้น) แล้วเลือก “เพิ่มไปยังหน้าจอโฮม” · <a href="install.html">ดูวิธีทุกเบราว์เซอร์</a></span></div>');
+  document.getElementById('a2hsBtn').onclick=async()=>{if(ev){ev.prompt();const r=await ev.userChoice;ev=null;if(r.outcome==='accepted')hide()}else if(ios)document.getElementById('a2hsTip').hidden=false;else location.href='install.html'};return document.getElementById('a2hs')}
  function show(){if(SA||localStorage.getItem('vd_installed'))return;const b=box();if(b)b.hidden=false}
  function hide(){const b=document.getElementById('a2hs');if(b)b.hidden=true}
  addEventListener('beforeinstallprompt',e=>{e.preventDefault();ev=e;show()});
  addEventListener('appinstalled',()=>{try{localStorage.setItem('vd_installed','1')}catch(e){}hide()});
- addEventListener('DOMContentLoaded',()=>{box();if(ios&&!SA)show()});if(document.readyState!=='loading'){box();if(ios&&!SA)show()}
+ addEventListener('DOMContentLoaded',()=>{box();if((ios||edge)&&!SA)show()});if(document.readyState!=='loading'){box();if((ios||edge)&&!SA)show()}
  window.__a2hs={show,hide}})();
