@@ -14,7 +14,7 @@
 let D=[],L=[],shown=48;const eff=p=>p.sale_price??p.price;
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{const best={};J.products.forEach(p=>{const g=best[p.group_id];if(!g||eff(p)<eff(g))best[p.group_id]=p});D=J.products.filter(p=>best[p.group_id]===p);
  const fill=(id,v)=>[...new Set(v)].sort((a,b)=>a.localeCompare(b,'th')).forEach(x=>$(id).insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`));fill('cat',D.map(p=>p.sub));
- const c=new URLSearchParams(location.search).get('sub');if(c){$('cat').value=c;document.querySelector('h2').textContent=c}histP.then(apply)});
+ const SUBALIAS={'ฟื้นฟูร่างกาย':'อุปกรณ์การวิ่งอื่นๆ','อุปกรณ์การวิ่ง: ฟื้นตัว':'อุปกรณ์การวิ่งอื่นๆ','ของใช้นักวิ่ง: ฟื้นตัว':'อุปกรณ์การวิ่งอื่นๆ','ของใช้นักวิ่ง: อาบน้ำ':'อุปกรณ์การวิ่งอื่นๆ','ของใช้นักวิ่ง: กันเสียดสี':'อุปกรณ์การวิ่งอื่นๆ','ของใช้นักวิ่ง: สายสปอร์ต: น้ำหอม':'อุปกรณ์การวิ่งอื่นๆ','ของใช้นักวิ่ง: กันแดด':'อุปกรณ์การวิ่ง: กันแดด','ของใช้นักวิ่ง: ผ้าเช็ดตัว':'อุปกรณ์การวิ่ง: ผ้าเช็ดตัว'};let c=new URLSearchParams(location.search).get('sub');c=SUBALIAS[c]||c;if(c){$('cat').value=c;document.querySelector('h2').textContent=c}histP.then(apply)});
 function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean),c=$('cat').value,_g=SUB2G[c];$('guide').innerHTML=_g?guideBlock(_g,'catalog'):'';const t=$('tier').value,mx=+$('max').value||1e12;
  const B=D.filter(p=>(!c||p.sub==c)&&(!t||p.price_tier==t)&&eff(p)<=mx&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)));fillBrand(B);const b=$('brand').value;
  L=B.filter(p=>!b||p.brand==b);const s=$('sort').value;if(s)L.sort((x,y)=>s=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=48;render()}
