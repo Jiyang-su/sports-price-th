@@ -13,10 +13,12 @@
 <script>
 let D=[],L=[],shown=48;const eff=p=>p.sale_price??p.price;
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{const best={};J.products.forEach(p=>{const g=best[p.group_id];if(!g||eff(p)<eff(g))best[p.group_id]=p});D=J.products.filter(p=>best[p.group_id]===p);
- const fill=(id,v)=>[...new Set(v)].sort((a,b)=>a.localeCompare(b,'th')).forEach(x=>$(id).insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`));fill('cat',D.map(p=>p.sub));fill('brand',D.map(p=>p.brand).filter(Boolean));
+ const fill=(id,v)=>[...new Set(v)].sort((a,b)=>a.localeCompare(b,'th')).forEach(x=>$(id).insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`));fill('cat',D.map(p=>p.sub));
  const c=new URLSearchParams(location.search).get('sub');if(c){$('cat').value=c;document.querySelector('h2').textContent=c}histP.then(apply)});
-function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean),c=$('cat').value,_g=SUB2G[c];$('guide').innerHTML=_g?guideBlock(_g,'catalog'):'';t=$('tier').value,b=$('brand').value,mx=+$('max').value||1e12;
- L=D.filter(p=>(!c||p.sub==c)&&(!t||p.price_tier==t)&&(!b||p.brand==b)&&eff(p)<=mx&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)));const s=$('sort').value;if(s)L.sort((x,y)=>s=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=48;render()}
+function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean),c=$('cat').value,_g=SUB2G[c];$('guide').innerHTML=_g?guideBlock(_g,'catalog'):'';const t=$('tier').value,mx=+$('max').value||1e12;
+ const B=D.filter(p=>(!c||p.sub==c)&&(!t||p.price_tier==t)&&eff(p)<=mx&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)));fillBrand(B);const b=$('brand').value;
+ L=B.filter(p=>!b||p.brand==b);const s=$('sort').value;if(s)L.sort((x,y)=>s=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=48;render()}
+function fillBrand(B){const sel=$('brand'),cur=sel.value,n={};B.forEach(p=>{if(p.brand)n[p.brand]=(n[p.brand]||0)+1});const ks=Object.keys(n).sort((a,b)=>a.localeCompare(b,'th'));sel.innerHTML='<option value="">ทุกยี่ห้อ</option>'+ks.map(k=>`<option value="${esc(k)}">${esc(k)} (${n[k]})</option>`).join('');sel.value=n[cur]?cur:''}
 function render(){$('info').textContent=`${L.length.toLocaleString()} รายการ · แตะสินค้าเพื่อดูประวัติราคาและรีวิว`;
  $('grid').innerHTML=L.slice(0,shown).map(p=>{const pi=priceInfo(p.url,eff(p));return `<article class="card" style="--acc:${acc(p.category)};cursor:pointer" onclick="openProduct(D[${D.indexOf(p)}])" tabindex="0"><img class="pi" loading="lazy" src="${esc(p.image)}" alt=""><div class="nm">${esc(p.name)}</div>
  <div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div><div class="meta">${esc(p.brand)} · ข้อมูล ณ ${thDate(p.scraped)}</div><div><span class="tag a">${esc(p.sub)}</span><span class="tag">${esc(p.price_tier)}</span></div><div class="meta" style="margin-top:6px">📈 ${pi.label}</div>
