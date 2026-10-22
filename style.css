@@ -86,3 +86,6 @@ nav.top a.brand{display:flex;align-items:center;flex:0 0 auto;opacity:1;box-shad
 .relp{margin:0 0 30px}
 @media(max-width:700px){.prose{font-size:17px;line-height:1.85}.acard .ai{height:120px}}
 .cheer{background:rgba(255,122,26,.10);border-left:4px solid #ff7a1a;padding:10px 14px;border-radius:8px}
+
+/* v18 calm catalog: compact shop info at all widths */
+.calm .cl{display:block}.calm .dx{display:none}.calm .dx.open{display:block}.calm .card .meta{font-size:.82em}

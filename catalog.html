@@ -9,7 +9,7 @@
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin-bottom:18px">
 <input id="q" placeholder="ค้นหา…" aria-label="ค้นหา"><select id="cat" aria-label="หมวด"><option value="">ทุกประเภท</option></select><select id="tier" aria-label="ระดับราคา"><option value="">ทุกระดับราคา</option><option>ประหยัด</option><option>กลาง</option><option>พรีเมียม</option></select>
 <select id="brand" aria-label="ยี่ห้อ"><option value="">ทุกยี่ห้อ</option></select><input id="max" type="number" placeholder="ราคาไม่เกิน (บาท)" aria-label="ราคาไม่เกิน"><select id="sort" aria-label="เรียง"><option value="">ตามลำดับข้อมูล</option><option value="asc">ราคา ต่ำ → สูง</option><option value="desc">ราคา สูง → ต่ำ</option></select></div>
-<div id="guide"></div><div class="grid" id="grid"></div><p style="text-align:center"><button class="btn" id="more">แสดงเพิ่ม</button></p></section>
+<div id="guide"></div><p class="meta" id="catdisc" style="margin:0 0 10px">ราคาตามที่ร้านแสดง · ลิงก์ร้านค้าบางลิงก์เป็น Affiliate ราคาเท่าเดิม</p><div class="grid calm" id="grid"></div><p style="text-align:center"><button class="btn" id="more">แสดงเพิ่ม</button></p></section>
 <script>
 let D=[],L=[],shown=48;const eff=p=>p.sale_price??p.price;
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{const best={};J.products.forEach(p=>{const g=best[p.group_id];if(!g||eff(p)<eff(g))best[p.group_id]=p});D=J.products.filter(p=>best[p.group_id]===p);
@@ -19,9 +19,9 @@ function apply(){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean)
  const B=D.filter(p=>(!c||p.sub==c)&&(!t||p.price_tier==t)&&eff(p)<=mx&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)));fillBrand(B);const b=$('brand').value;
  L=B.filter(p=>!b||p.brand==b);const s=$('sort').value;if(s)L.sort((x,y)=>s=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=48;render()}
 function fillBrand(B){const sel=$('brand'),cur=sel.value,n={};B.forEach(p=>{if(p.brand)n[p.brand]=(n[p.brand]||0)+1});const ks=Object.keys(n).sort((a,b)=>a.localeCompare(b,'th'));sel.innerHTML='<option value="">ทุกยี่ห้อ</option>'+ks.map(k=>`<option value="${esc(k)}">${esc(k)} (${n[k]})</option>`).join('');sel.value=n[cur]?cur:''}
-function render(){$('info').textContent=`${L.length.toLocaleString()} รายการ · แตะสินค้าเพื่อดูประวัติราคาและรีวิว`;
+function render(){const c0=$('cat').value;$('info').textContent=`${L.length.toLocaleString()} รายการ · แตะสินค้าเพื่อดูประวัติราคา`;
  $('grid').innerHTML=L.slice(0,shown).map(p=>{const pi=priceInfo(p.url,eff(p));return `<article class="card" style="--acc:${acc(p.category)};cursor:pointer" onclick="openProduct(D[${D.indexOf(p)}])" tabindex="0"><img class="pi" loading="lazy" src="${esc(p.image)}" alt=""><div class="nm">${esc(p.name)}</div>
- <div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div><div class="meta">${esc(p.brand)} · ข้อมูล ณ ${thDate(p.scraped)}</div><div><span class="tag a">${esc(p.sub)}</span><span class="tag">${esc(p.price_tier)}</span></div><div class="meta" style="margin-top:6px">📈 ${pi.label}</div>
+ <div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div><div class="meta">${esc(p.brand)} · ข้อมูล ณ ${thDate(p.scraped)}</div>${c0?'':`<div><span class="tag a">${esc(p.sub)}</span></div>`}${pi.s?`<div class="meta" style="margin-top:6px">📈 ${pi.label}</div>`:''}
  ${shopBtn(p.link||p.url,p.store,"catalog-card","btn sm","margin-top:12px;text-align:center")}</article>`}).join('');$('more').style.display=shown<L.length?'inline-block':'none'}
 ['q','cat','tier','brand','max','sort'].forEach(i=>$(i).addEventListener('input',apply));$('more').onclick=()=>{shown+=48;render()};
 </script>
