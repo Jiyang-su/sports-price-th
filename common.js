@@ -34,10 +34,13 @@ const relFor=store=>AFF.has(store)?'sponsored nofollow noopener':'nofollow noope
 const AFF_LBL='<div class="aff" onclick="event.stopPropagation()">ลิงก์ร้านค้า · อาจเป็น Affiliate · <a href="about.html">เว็บนี้หารายได้อย่างไร</a></div>';
 // v14: generic affiliate mechanism. PRODUCT_TPL[store] = product URL template ({url} or {url_enc}); STORE_LINKS[store].aff = store-level (homepage) affiliate link.
 const PTPL=(window.SITE_CONFIG||{}).PRODUCT_TPL||{},SLINK=(window.SITE_CONFIG||{}).STORE_LINKS||{};
-function affUrl(url,store){const t=PTPL[store];return t?t.replace('{url_enc}',encodeURIComponent(url)).replace('{url}',url):url}
+const PAFF=(window.SITE_CONFIG||{}).PRODUCT_AFF||{};
+function affKey(u){try{const x=new URL(u);return (x.host.replace(/^www\./,'')+x.pathname.replace(/\/+$/,'')).toLowerCase()}catch(e){return ''}}
+const prodAff=u=>PAFF[affKey(u)]||'';
+function affUrl(url,store){const o=prodAff(url);if(o)return o;const t=PTPL[store];return t?t.replace('{url_enc}',encodeURIComponent(url)).replace('{url}',url):url}
 function storeA(store,pos,inner,cls='',style=''){const L=SLINK[store]||{},u=L.aff||L.site;if(!u)return esc(store);return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(u)}" target="_blank" rel="${L.aff?'nofollow noopener sponsored':'nofollow noopener'}" data-store="${esc(store)}" data-aff="${L.aff?'store':''}" data-pos="${pos}">${inner||esc(store)}</a>`}
 function storeList(pos){return Object.keys(SLINK).filter(k=>SLINK[k].site).map(k=>storeA(k,pos)).join(' · ')}
-function shopA(url,store,pos,inner,cls='',style=''){return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(affUrl(url,store))}" target="_blank" rel="${relFor(store)}" data-out="${esc(store)}" data-pos="${pos}" onclick="event.stopPropagation()">${inner}</a>`}
+function shopA(url,store,pos,inner,cls='',style=''){return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(affUrl(url,store))}" target="_blank" rel="${prodAff(url)?'nofollow noopener sponsored':relFor(store)}"${prodAff(url)?' data-aff="product"':''} data-out="${esc(store)}" data-pos="${pos}" onclick="event.stopPropagation()">${inner}</a>`}
 // v7: delivery info per store (only what the store states; source in stores.json -> SITE_CONFIG.SHIPPING)
 const SHIP=(window.SITE_CONFIG||{}).SHIPPING||{};
 function addWorkdays(d,n){d=new Date(d);while(n>0){d.setDate(d.getDate()+1);const w=d.getDay();if(w!=0&&w!=6)n--}return d}
