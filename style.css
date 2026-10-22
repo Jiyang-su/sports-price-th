@@ -85,3 +85,4 @@ nav.top a.brand{display:flex;align-items:center;flex:0 0 auto;opacity:1;box-shad
 .acta{max-width:38em;margin:0 auto 40px;background:var(--card);border-radius:6px;padding:18px 20px;border-left:3px solid #06c755}.acta h3{margin:0 0 6px}.acta p{margin:0 0 12px;color:var(--mut)}
 .relp{margin:0 0 30px}
 @media(max-width:700px){.prose{font-size:17px;line-height:1.85}.acard .ai{height:120px}}
+.trend .cheer{background:rgba(255,122,26,.10);border-left:4px solid #ff7a1a;padding:10px 14px;border-radius:8px}
