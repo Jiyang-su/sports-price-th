@@ -115,3 +115,31 @@ footer.f{background:#e9f3e5;color:var(--mut)}footer.f a{color:var(--fg)}
 .ov .box{background:#fff}
 .tag{color:var(--mut)}.tag.a{background:#e7f5df;border-color:#cfe6c6;color:#25814a;border-radius:999px}
 .filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:10px 0 14px}
+
+/* v29 Gen Z refresh: fresh light base + electric lime, bold Kanit display, big rounded cards, sticker tags, bento */
+:root{--acc:#1f7a45;--lime:#c6f432;--ink:#10261a}
+h1,h2,.hero h1,.tile h3,.lt-in h3{font-family:Kanit,"Noto Sans Thai",sans-serif;font-weight:800;letter-spacing:-.01em}
+.hero h1{font-style:italic;font-size:clamp(46px,8vw,104px);line-height:1}
+h2{font-size:clamp(28px,4vw,48px)}
+.kick{display:inline-block;background:var(--lime);color:var(--ink)!important;padding:3px 10px;border-radius:999px;font-weight:700;transform:rotate(-2deg)}
+.btn.acc,.btn.solid{background:var(--lime);border-color:var(--ink);color:var(--ink);font-weight:700;box-shadow:3px 3px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.btn.acc:hover,.btn.solid:hover{background:var(--lime);color:var(--ink);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px)!important;box-shadow:1px 1px 0 var(--ink)!important}
+.card{border-radius:22px;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px) rotate(-.3deg);box-shadow:0 12px 28px #10261a1f}
+.card img.pi{border-radius:16px;background:#f1f7ee;transition:transform .3s}.card:hover img.pi{transform:scale(1.04)}
+.tag.a{background:#eaf7d2;color:var(--ink);border-color:#d3ec9a}
+.stk{display:inline-block;margin:6px 4px 0 0;padding:2px 9px;border-radius:999px;font-size:10.5px;font-weight:700;border:1.5px solid var(--ink);transform:rotate(-3deg)}
+.stk.th{background:#fff;color:#a51931;border-color:#a51931}.stk.nw{background:var(--lime);color:var(--ink)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.chip{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 14px;font:600 13px "Noto Sans Thai",sans-serif;cursor:pointer;transition:transform .15s}
+.chip:hover{transform:translateY(-2px)}.chip.on{background:var(--lime);box-shadow:2px 2px 0 var(--ink)}.chip b{margin-left:4px}
+nav.top a.on,nav.top a:hover{color:var(--ink);box-shadow:inset 0 -6px 0 var(--lime)!important}
+.brands{padding:4px 2px 12px}.bchip{flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;min-width:150px;padding:18px 20px;border-radius:22px;background:#fff;border:1.5px solid var(--ink);text-decoration:none;box-shadow:4px 4px 0 var(--lime);transition:transform .15s}
+.bchip:nth-child(even){box-shadow:4px 4px 0 var(--ink);background:var(--lime)}.bchip:hover{transform:translateY(-3px) rotate(-1deg)}
+.bchip b{font:800 italic 22px Kanit,sans-serif;color:var(--ink)}.bchip span{font-size:12px;color:var(--ink);opacity:.75}
+.stories{grid-template-columns:repeat(4,1fr)}.story{border-radius:22px;padding:24px;transition:transform .2s}.story:hover{transform:translateY(-3px)}
+.story:first-child{grid-column:span 2;grid-row:span 2;background:var(--ink);color:#fff}.story:first-child h3{font:800 italic clamp(26px,3vw,40px) Kanit,sans-serif;color:var(--lime)}.story:first-child p{color:#d9e8d3}
+.story:nth-child(2){background:var(--lime)}.story:nth-child(2) p{color:var(--ink)}
+.ltile,.tile,.evc{border-radius:22px}
+@media(max-width:700px){.stories{grid-template-columns:1fr 1fr}.story:first-child{grid-row:auto}.hero h1{font-size:52px}.card{border-radius:18px}}
+@media(prefers-reduced-motion:reduce){.card:hover,.bchip:hover,.story:hover{transform:none}}
