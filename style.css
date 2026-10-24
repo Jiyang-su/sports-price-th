@@ -192,3 +192,9 @@ body[data-pg=index] .home-hero.hero2,.home-hero.hero2{min-height:0!important;dis
 @media(max-width:700px){body[data-pg=index] .home-hero.hero2,.home-hero.hero2{grid-template-columns:1fr!important;gap:16px;padding:12px 16px 28px}.hero2 .h2img img{aspect-ratio:4/3;border-radius:22px;box-shadow:5px 5px 0 var(--lime)}}
 .together{max-width:760px;margin:0 auto;text-align:center}.together .tsub{display:inline-block;background:var(--t-vaikao);color:#0b1a10;font-weight:700;padding:4px 14px;border-radius:999px;margin:0 0 14px}.together p{font-size:18px;line-height:1.8;color:#10261a;margin:4px 0}.together .cta{justify-content:center;margin-top:18px}
 .btn.tg-y{background:var(--t-trends);border:2px solid var(--c-trends);color:#10261a;font-weight:700;min-height:48px}.btn.tg-v{background:var(--t-vaikao);border:2px solid var(--c-vaikao);color:#10261a;font-weight:700;min-height:48px}
+
+/* v33 a2hs: big eye-catching install button on mobile */
+.a2hs{margin-top:16px;padding:16px;border:2px solid var(--ink);border-radius:22px;background:#fff;box-shadow:4px 4px 0 var(--lime);max-width:420px}
+.a2hs #a2hsBtn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:16px 20px;font-size:17px;font-weight:800;letter-spacing:.02em;text-transform:none}
+.a2hs #a2hsNote,.a2hs #a2hsTip{display:block;margin-top:10px;font-size:13px;line-height:1.55;color:#24382b}
+@media(min-width:900px){.a2hs{max-width:360px}.a2hs #a2hsBtn{min-height:48px;font-size:15px}}
