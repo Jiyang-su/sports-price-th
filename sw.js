@@ -1,5 +1,5 @@
 // วิ่งดี service worker: app shell only. HTML/JSON always network-first (never stale prices); offline falls back to cache.
-const V='vd-1792848836',SHELL=['/','/style.css?v=1792848836','/common.js?v=1792848836','/config.js?v=1792848836','/track.js?v=1792848836','/guides.js?v=1792848836','/icon-192.png','/favicon.svg'];
+const V='vd-1792852979',SHELL=['/','/style.css?v=1792852979','/common.js?v=1792852979','/config.js?v=1792852979','/track.js?v=1792852979','/guides.js?v=1792852979','/icon-192.png','/favicon.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(K=>Promise.all(K.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const r=e.request,u=new URL(r.url);if(r.method!=='GET'||u.origin!==location.origin)return;
