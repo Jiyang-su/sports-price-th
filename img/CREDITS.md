@@ -8,3 +8,9 @@ Photos from Wikimedia Commons (and one from Unsplash, noted below), used under t
 - **img/badminton.jpg** — File:Open IIT 2015 - Women's.jpg — by AnushkaG2509 — License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0) — Source: https://commons.wikimedia.org/wiki/File:Open_IIT_2015_-_Women%27s.jpg
 - **img/badminton2.jpg** — File:A badminton match S.V.I.T. sports programs.jpg — by Sivakrishna.t — License: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0) — Source: https://commons.wikimedia.org/wiki/File:A_badminton_match_S.V.I.T._sports_programs.jpg
 - **img/hero-coast.jpg** — "a woman running along a path near the ocean" (morning run, Toronto, Canada — waterfront of Lake Ontario) — by Filip Mroz (https://unsplash.com/@mroz) — License: Unsplash License (https://unsplash.com/license) — Source: https://unsplash.com/photos/a-woman-running-along-a-path-near-the-ocean-sgtxFOiBZmQ — mirrored horizontally and resized
+
+## Mascot
+- **img/mascot/khonfu-*.webp** — ขนฟู (Khonfu), มาสคอตวิ่งดี — owner-provided mascot art (VingDee / Chill Desk), supplied 25 Oct 2026; resized to 800px/400px WebP. All rights reserved by the owner; not under a free license.
+
+## Brand logo
+- **img/brand/vingdee-logo-*.png / vingdee-icon-*.png** — VingDee wordmark + two-runner mark — owner-provided (Chill Desk), supplied 25 Oct 2026; resized for nav/footer/icon. All rights reserved by the owner.
