@@ -14,3 +14,9 @@ Photos from Wikimedia Commons (and one from Unsplash, noted below), used under t
 
 ## Brand logo
 - **img/brand/vingdee-logo-*.png / vingdee-icon-*.png** — VingDee wordmark + two-runner mark — owner-provided (Chill Desk), supplied 25 Oct 2026; resized for nav/footer/icon. All rights reserved by the owner.
+
+## ที่วิ่งดี (places)
+- **img/places/bkk-rotfai.jpg** — File:สวนวชิรเบญจทัศ (สวนรถไฟ) IMG 7315.jpg — by PEAK99 — License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0) — Source: https://commons.wikimedia.org/wiki/File:%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%A7%E0%B8%8A%E0%B8%B4%E0%B8%A3%E0%B9%80%E0%B8%9A%E0%B8%8D%E0%B8%88%E0%B8%97%E0%B8%B1%E0%B8%A8_(%E0%B8%AA%E0%B8%A7%E0%B8%99%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F)_IMG_7315.jpg — resized
+- **img/places/bkk-benjakitti.jpg** — File:Benjakitti Forest Park (I).jpg — by Supanut Arunoprayote — License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0) — Source: https://commons.wikimedia.org/wiki/File:Benjakitti_Forest_Park_(I).jpg — resized
+- **img/places/bkk-lumphini.jpg** — File:Lumphini Park (1).jpg — by Sergei Gussev — License: CC BY 2.0 (https://creativecommons.org/licenses/by/2.0) — Source: https://commons.wikimedia.org/wiki/File:Lumphini_Park_(1).jpg — resized
+- **img/places/bkk-rama9.jpg** — File:Suan Luang Rama IX 01.jpg — by Boonlert — License: CC0 (https://creativecommons.org/publicdomain/zero/1.0/) — Source: https://commons.wikimedia.org/wiki/File:Suan_Luang_Rama_IX_01.jpg — resized
