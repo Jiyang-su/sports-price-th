@@ -3,6 +3,7 @@ const S1='https://thesublist.run/running-events/marathon/',S2='https://www.runla
 const EV=[
 ['2026-11-14','Nordic Walk & Run 2026 (ครั้งที่ 4)','กรุงเทพมหานคร · สวนวชิรเบญจทัศ (สวนรถไฟ)','10K / 5K',['https://www.jogandjoy.run/project/detail/175','https://www.runlah.com/en/QjgVLNpU'],{'10K':0,'5K':0},'jj'],
 ['2026-11-15','Bangsaen42 Chonburi Marathon 2026','ชลบุรี','42.195K',[S1,S2],{'42.195K':2000},'sub'],
+['2026-11-21','Black Ivory Trail Thailand (Mission Earth)','น่าน · อ.แม่จริม (+ City Run เมืองน่าน 20 พ.ย.)','12K / 8K / 5K',['https://www.runlah.com/en/bit26','https://www.springnews.co.th/lifestyle/spring-life/865500'],{'12K':2890,'8K':2490,'5K':1990},'bit'],
 ['2026-11-22','Ayutthaya Marathon 2026','พระนครศรีอยุธยา','42K / 21K / 10.5K / 5K',[S1,S2],{'42.195K':1220,'21.1K':920},'sub'],
 ['2026-11-22','MY CHAMPION เพชรดำ (Black Diamond) 42.195 Marathon #1','เพชรบูรณ์ (เขาค้อ)','42.195K / 21.1K / 10.5K / 5K',[S1,S2],{'42.195K':1300,'21.1K':900},'sub'],
 ['2026-11-29','Ubon Marathon 2026','อุบลราชธานี','42K / 21K / 10K / 5K',[S1,S2],{'42.195K':1000,'21.1K':800},'sub'],
