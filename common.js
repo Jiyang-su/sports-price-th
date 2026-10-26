@@ -2,7 +2,7 @@ const $=id=>document.getElementById(id),fmt=n=>'฿'+Number(n).toLocaleString('t
 const ACC={'วิ่ง':'#c13a5a','แบดมินตัน':'#2ecc71','ฟุตบอล/ฟุตซอล':'#3fa9ff','เทนนิส/พิกเคิลบอล':'#d4e157','ฟิตเนส/เวทเทรนนิ่ง':'#ff5c7a','จักรยาน':'#f5c518','ว่ายน้ำ/กีฬาทางน้ำ':'#26c6da','เดินป่า/แคมป์ปิ้ง':'#8bc34a','บาสเกตบอล':'#ff8f4d','กอล์ฟ':'#66bb6a','โยคะ/พิลาทิส':'#b39ddb','มวย/ศิลปะการต่อสู้':'#ef5350'};
 const acc=c=>ACC[c]||'#9aa4b2';const TH_M=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 const thDate=s=>{const d=new Date(s+'T00:00:00');return d.getDate()+' '+TH_M[d.getMonth()]+' '+(d.getFullYear()+543)};
-const NAV=[['index.html','หน้าแรก'],['shoes.html','Shoe Verse'],['kids.html','Kids'],['mae.html','คุณแม่'],['trends.html','เทรนด์คนรุ่นใหม่'],['vaikao.html','วิ่งดีวัยเก๋า'],['picks.html','สนับสนุนวิ่งดี'],['deals.html','คุ้มค่าตอนนี้'],['running-shoe-finder.html','ตัวช่วยเลือก'],['events.html','ปฏิทินงานวิ่ง'],['places.html','ที่วิ่งดี'],['articles.html','บทความ'],['trust.html','รู้จักวิ่งดี']];
+const NAV=[['index.html','หน้าแรก'],['shoes.html','Shoe Verse'],['kids.html','Kids'],['mae.html','คุณแม่'],['trends.html','เทรนด์คนรุ่นใหม่'],['vaikao.html','วิ่งดีวัยเก๋า'],['deals.html','คุ้มค่าตอนนี้'],['running-shoe-finder.html','ตัวช่วยเลือก'],['events.html','ปฏิทินงานวิ่ง'],['places.html','ที่วิ่งดี'],['articles.html','บทความ'],['trust.html','รู้จักวิ่งดี']];
 document.addEventListener('DOMContentLoaded',()=>{document.body.dataset.pg=(location.pathname.split('/').pop()||'index.html').replace('.html','');const here0=/\/articles\/[^/]+$/.test(location.pathname)||/^(insights|guides)\.html$/.test(location.pathname.split('/').pop())?'articles.html':(location.pathname.split('/').pop()||'index.html'),here=NAV.some(n=>n[0]==here0+location.search)?here0+location.search:here0;
  document.body.insertAdjacentHTML('afterbegin',`<nav class="top"><a class="brand" href="index.html" aria-label="วิ่งดี VingDee หน้าแรก"><img class="bfull" src="img/brand/vingdee-logo-nav.png" srcset="img/brand/vingdee-logo-nav.png 1x, img/brand/vingdee-logo-nav@2x.png 2x" alt="วิ่งดี VingDee" width="160" height="145"><img class="bicon" src="img/brand/vingdee-icon-64.png" alt="วิ่งดี VingDee" width="64" height="64"></a><div class="links">${NAV.map(([h,t])=>`<a href="${h}" data-n="${h.replace('.html','')}" class="${h==here?'on':''}">${t}</a>`).join('')}</div></nav>`);
  {const L=document.querySelector('nav.top .links'),on=L&&L.querySelector('a.on');if(on&&L.scrollWidth>L.clientWidth)L.scrollLeft=Math.max(0,on.offsetLeft-L.offsetLeft-40)}
@@ -31,8 +31,9 @@ function perKm(e){return `<div class="km" title="ประมาณการ: �
 // v6: outbound shop links — rel + disclosure label + tracking attributes in ONE place
 const AFF=new Set((window.SITE_CONFIG||{}).AFFILIATE_STORES||[]);
 const relFor=store=>AFF.has(store)?'sponsored nofollow noopener':'nofollow noopener';
-const isAffLink=(u,st)=>!!(prodAff(u)||PTPL[st]);
-function affLbl(u,st,tag='div',cls='aff'){return isAffLink(u,st)?`<${tag} class="${cls}" onclick="event.stopPropagation()">ขอบคุณที่สนับสนุนวิ่งดี · <a href="about.html">เว็บนี้หารายได้อย่างไร</a></${tag}>`:''}
+const isShortAff=u=>{try{return new URL(u).hostname==='a.supersports.co.th'}catch(e){return false}};
+const isAffLink=(u,st)=>!!(prodAff(u)||PTPL[st]||isShortAff(u));
+function affLbl(u,st,tag='div',cls='aff'){return isAffLink(u,st)?`<${tag} class="${cls}" onclick="event.stopPropagation()"><a href="about.html">สนับสนุนวิ่งดี</a></${tag}>`:''}
 // v14: generic affiliate mechanism. PRODUCT_TPL[store] = product URL template ({url} or {url_enc}); STORE_LINKS[store].aff = store-level (homepage) affiliate link.
 const PTPL=(window.SITE_CONFIG||{}).PRODUCT_TPL||{},SLINK=(window.SITE_CONFIG||{}).STORE_LINKS||{};
 const PAFF=(window.SITE_CONFIG||{}).PRODUCT_AFF||{};
@@ -41,7 +42,7 @@ const prodAff=u=>PAFF[affKey(u)]||'';
 function affUrl(url,store){const o=prodAff(url);if(o)return o;const t=PTPL[store];return t?t.replace('{url_enc}',encodeURIComponent(url)).replace('{url}',url):url}
 function storeA(store,pos,inner,cls='',style=''){const L=SLINK[store]||{},u=L.aff||L.site;if(!u)return esc(store);return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(u)}" target="_blank" rel="${L.aff?'nofollow noopener sponsored':'nofollow noopener'}" data-store="${esc(store)}" data-aff="${L.aff?'store':''}" data-pos="${pos}">${inner||esc(store)}</a>`}
 function storeList(pos){return Object.keys(SLINK).filter(k=>SLINK[k].site).map(k=>storeA(k,pos)).join(' · ')}
-function shopA(url,store,pos,inner,cls='',style=''){return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(affUrl(url,store))}" target="_blank" rel="${prodAff(url)?'nofollow noopener sponsored':relFor(store)}"${prodAff(url)?' data-aff="product"':''} data-out="${esc(store)}" data-pos="${pos}" onclick="event.stopPropagation()">${inner}</a>`}
+function shopA(url,store,pos,inner,cls='',style=''){const href=affUrl(url,store),aff=!!(prodAff(url)||isShortAff(url)||isShortAff(href));return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(href)}" target="_blank" rel="${aff?'nofollow noopener sponsored':relFor(store)}"${aff?' data-aff="product"':''} data-out="${esc(store)}" data-pos="${pos}" onclick="event.stopPropagation()">${inner}</a>`}
 // v7: delivery info per store (only what the store states; source in stores.json -> SITE_CONFIG.SHIPPING)
 const SHIP=(window.SITE_CONFIG||{}).SHIPPING||{};
 function addWorkdays(d,n){d=new Date(d);while(n>0){d.setDate(d.getDate()+1);const w=d.getDay();if(w!=0&&w!=6)n--}return d}
