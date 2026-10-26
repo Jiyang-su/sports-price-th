@@ -27,3 +27,5 @@ Photos from Wikimedia Commons (and one from Unsplash, noted below), used under t
 - **img/places/cnx-huaytungtao.jpg** — File:Huai Tueng Thao Chiang Mai lake.JPG — by Takeaway — License: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0) — Source: https://commons.wikimedia.org/wiki/File:Huai_Tueng_Thao_Chiang_Mai_lake.JPG — resized
 - **img/promo/kids-hero.jpg** — AI-generated illustration for VingDee Kids hero — 2026-10-26 — resized 1280w
 - **img/promo/mae-hero.jpg** — AI-generated illustration for VingDee คุณแม่ (Mae) hero — 2026-10-26 — resized 1280w
+
+- trail-your-path.jpg — ภาพจริงจาก Chill Desk (เจ้าของเว็บ) สำหรับบทความวิ่งเทรล «เริ่มต้นจากก้าวเล็ก ๆ…» · 2026-10-26
