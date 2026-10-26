@@ -25,3 +25,5 @@ Photos from Wikimedia Commons (and one from Unsplash, noted below), used under t
 - **img/places/cnx-angkaew.jpg** — File:Ang Kaew reservoir.jpg — by Christophe95 — License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0) — Source: https://commons.wikimedia.org/wiki/File:Ang_Kaew_reservoir.jpg — resized
 - **img/places/cnx-buakhard.jpg** — "People running along a path under a large tree" (Chiang Mai public park pathway) — by Jetts Thanatip (https://unsplash.com/@jetts014) — License: Unsplash License (https://unsplash.com/license) — Source: https://unsplash.com/photos/people-running-along-a-path-under-a-large-tree-sDcD8pxciZg — cropped/resized
 - **img/places/cnx-huaytungtao.jpg** — File:Huai Tueng Thao Chiang Mai lake.JPG — by Takeaway — License: CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0) — Source: https://commons.wikimedia.org/wiki/File:Huai_Tueng_Thao_Chiang_Mai_lake.JPG — resized
+- **img/promo/kids-hero.jpg** — AI-generated illustration for VingDee Kids hero — 2026-10-26 — resized 1280w
+- **img/promo/mae-hero.jpg** — AI-generated illustration for VingDee คุณแม่ (Mae) hero — 2026-10-26 — resized 1280w
