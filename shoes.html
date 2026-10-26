@@ -5,7 +5,7 @@
 <link rel="canonical" href="https://vingdee.com/shoes.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#fbe3df"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="วิ่งดี">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Kanit:ital,wght@0,600;0,800;1,800&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1793019869"><script src="config.js?v=1793019869"></script><script src="track.js?v=1793019869"></script><script src="common.js?v=1793019869"></script><script src="guides.js?v=1793019869"></script></head><body><section class="sec" style="border:0"><h1 class="sv">Shoe Verse</h1><p class="svsub">รวมรองเท้าวิ่งทุกคู่</p><h2>รองเท้าวิ่งทุกยี่ห้อ ทุกแบบ</h2>
+<link rel="stylesheet" href="style.css?v=1793020399"><script src="config.js?v=1793020399"></script><script src="track.js?v=1793020399"></script><script src="common.js?v=1793020399"></script><script src="guides.js?v=1793020399"></script></head><body><section class="sec" style="border:0"><h1 class="sv">Shoe Verse</h1><p class="svsub">รวมรองเท้าวิ่งทุกคู่</p><h2>รองเท้าวิ่งทุกยี่ห้อ ทุกแบบ</h2>
 <p class="lead">รวมรองเท้าวิ่งจากร้านทางการในไทยไว้ที่เดียว เลือกคู่ที่ใส่สบาย แล้วออกไปเก็บก้าวเล็กๆ ของวันนี้ ไม่ต้องแพงก็วิ่งดีได้ 🌿</p>
 <div class="stats" id="svstats"></div>
 <div class="filters" id="flt"><input id="q" placeholder="ค้นหารุ่น…" aria-label="ค้นหา"><select id="brand" aria-label="ยี่ห้อ"></select><select id="type" aria-label="แบบการวิ่ง"></select><select id="sex" aria-label="เพศ"></select><select id="sort" aria-label="เรียง"><option value="">เรียงตามยี่ห้อ</option><option value="asc">ราคา ต่ำ → สูง</option><option value="desc">ราคา สูง → ต่ำ</option></select></div>
@@ -15,21 +15,21 @@
 let D=[],L=[],shown=48;const eff=p=>p.sale_price??p.price,TORD=['ซ้อมทุกวัน','วิ่งเร็ว-เทมโป','ลงแข่ง','ซับแรงกระแทก','เทรล'];
 const SX={'ชาย':'ผู้ชาย','หญิง':'ผู้หญิง'};
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{D=J.products.slice().sort((x,y)=>x.brand.localeCompare(y.brand,'th')||x.name.localeCompare(y.name,'th'));$('svstats').innerHTML=`<div><div class="stat">${D.length.toLocaleString()}</div><small>รุ่นทั้งหมด</small></div><div><div class="stat">${new Set(D.map(p=>p.brand)).size}</div><small>ยี่ห้อ</small></div><div><div class="stat">${new Set(D.map(p=>p.store)).size}</div><small>ร้านทั้งหมด</small></div>`;const u=new URLSearchParams(location.search);['brand','type','sex'].forEach(k=>{if(u.get(k))$(k).dataset.want=u.get(k)});histP.then(apply)});
-
+let THAI=new URLSearchParams(location.search).get('thai')=='1';
 const okSex=(p,s)=>!s||p.sex==s||p.sex=='ยูนิเซ็กซ์';
 function base(skip){const q=$('q').value.toLowerCase().split(/\s+/).filter(Boolean),b=$('brand').value,t=$('type').value,s=$('sex').value;
- return D.filter(p=>(skip=='brand'||!b||p.brand==b)&&(skip=='type'||!t||p.type==t)&&(skip=='sex'||okSex(p,s))&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)))}
+ return D.filter(p=>(skip=='brand'||!b||p.brand==b)&&(skip=='type'||!t||p.type==t)&&(skip=='sex'||okSex(p,s))&&(skip=='thai'||!THAI||p.thai)&&q.every(w=>(p.name+' '+p.brand).toLowerCase().includes(w)))}
 function fill(id,all,keys,label){const sel=$(id),cur=sel.dataset.want||sel.value;delete sel.dataset.want;sel.innerHTML=`<option value="">${all}</option>`+keys.map(([k,n])=>`<option value="${esc(k)}">${esc(label(k))} (${n})</option>`).join('');sel.value=keys.some(x=>x[0]==cur)?cur:''}
 function cnt(B,f){const n={};B.forEach(p=>{const k=f(p);if(k)n[k]=(n[k]||0)+1});return n}
 function apply(){
  const nb=cnt(base('brand'),p=>p.brand);fill('brand','ทุกยี่ห้อ',Object.keys(nb).sort((a,b)=>a.localeCompare(b,'th')).map(k=>[k,nb[k]]),k=>k);
  const nt=cnt(base('type'),p=>p.type);fill('type','ทุกแบบการวิ่ง',TORD.filter(k=>nt[k]).map(k=>[k,nt[k]]),k=>k);
  const Bs=base('sex'),ns={ชาย:Bs.filter(p=>okSex(p,'ชาย')).length,หญิง:Bs.filter(p=>okSex(p,'หญิง')).length};fill('sex','ทุกเพศ',['ชาย','หญิง'].filter(k=>ns[k]).map(k=>[k,ns[k]]),k=>SX[k]);
- $('chips').innerHTML='';
+ const nth=base('thai').filter(p=>p.thai).length;if(!nth)THAI=false;$('chips').innerHTML=nth?`<button type="button" class="chip${THAI?' on':''}" id="thai" aria-pressed="${THAI}">แบรนด์ไทย 🇹🇭 <b>${nth}</b></button>`:'';if(nth)$('thai').onclick=()=>{THAI=!THAI;apply()};
  L=base('');const s=$('sort').value;if(s)L.sort((x,y)=>s=='asc'?eff(x)-eff(y):eff(y)-eff(x));shown=48;render()}
 function render(){$('info').textContent=`${L.length.toLocaleString()} รุ่น จาก ${new Set(L.map(p=>p.brand)).size} ยี่ห้อ · ${new Set(L.map(p=>p.store)).size} ร้าน · แตะรองเท้าเพื่อดูประวัติราคา`;
  $('grid').innerHTML=L.slice(0,shown).map(p=>`<article class="card" style="cursor:pointer" onclick="openProduct(D[${D.indexOf(p)}])" tabindex="0"><img class="pi" loading="lazy" src="${esc(p.image)}" alt=""><div class="nm">${esc(p.name)}</div>
- <div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div><div class="meta">${esc(p.brand)} · ${esc(p.store)}</div><div><span class="tag a" data-t="${esc(p.type)}">${esc(p.type)}</span>${p.thai?'<span class="stk th">แบรนด์ไทย</span>':''}${p.new&&!p.thai?'<span class="stk nw">แบรนด์ใหม่</span>':''}</div>
+ <div><span class="pr">${fmt(eff(p))}</span>${p.sale_price?`<span class="old">${fmt(p.price)}</span>`:''}</div><div class="meta">${esc(p.brand)} · ${esc(p.store)}</div><div><span class="tag a" data-t="${esc(p.type)}">${esc(p.type)}</span>${p.new&&!p.thai?'<span class="stk nw">แบรนด์ใหม่</span>':''}</div>
  ${shopBtn(p.link||p.url,p.store,"shoes-card","btn sm","margin-top:12px;text-align:center")}</article>`).join('')||'<p class="empty">ไม่พบรุ่นที่ตรงเงื่อนไข ลองล้างตัวกรองดูนะครับ</p>';$('more').style.display=shown<L.length?'inline-block':'none'}
 ['q','brand','type','sex','sort'].forEach(i=>$(i).addEventListener('input',apply));$('more').onclick=()=>{shown+=48;render()};
 </script>
