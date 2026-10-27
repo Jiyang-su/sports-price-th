@@ -33,6 +33,7 @@ footer.f{border-top:1px solid var(--line);padding:40px 5vw 70px;color:var(--mut)
 
 .km{font-size:12px;color:#8a6d00;margin:4px 0}.km span{color:var(--mut)}.off{display:inline-block;background:#c13a5a;color:#fff;font-weight:700;font-size:12px;padding:2px 7px;border-radius:3px;margin-left:8px;vertical-align:middle}
 .stat{font-size:clamp(34px,6vw,64px);font-weight:700;color:#c13a5a;line-height:1}.stats{display:flex;gap:28px;flex-wrap:wrap;margin:6px 0 26px}.stats div{min-width:140px}.stats small{display:block;color:#7a5a5c;font-size:13px;margin-top:4px}
+#visitors .stats{gap:18px}#visitors .stats div{min-width:110px;flex:1 1 110px}#visitors .stat{font-size:clamp(28px,5.5vw,56px)}
 .seg{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}.seg button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
 .nope{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.nope div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px}.nope b{display:block;margin-bottom:6px}
 

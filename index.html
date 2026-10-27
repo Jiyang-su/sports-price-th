@@ -5,7 +5,7 @@
 <link rel="canonical" href="https://vingdee.com/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/apple-touch-icon-precomposed.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#fbe3df"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="วิ่งดี">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Kanit:ital,wght@0,600;0,800;1,800&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1793074614"><script src="config.js?v=1793074614"></script><script src="track.js?v=1793074614"></script><script src="common.js?v=1793074614"></script><script src="guides.js?v=1793074614"></script></head><body><script src="events-data.js?v=1793074614"></script>
+<link rel="stylesheet" href="style.css?v=1793082186"><script src="config.js?v=1793082186"></script><script src="track.js?v=1793082186"></script><script src="common.js?v=1793082186"></script><script src="guides.js?v=1793082186"></script></head><body><script src="events-data.js?v=1793082186"></script>
 <header class="hero home-hero hero2"><div class="h2txt"><div class="kick up" style="color:#c13a5a">วิ่งได้ทุกคน · เริ่มได้วันนี้</div>
 <h1>วิ่งดี<br>วิ่งด้วยกัน</h1><p>ต่างวัย ต่างก้าว แต่ไปด้วยกัน · สวนใกล้บ้านก็เริ่มได้ ไม่ต้องเร็ว ไม่ต้องไกล</p>
 <div class="cta"><a class="btn acc" href="shoes.html">เข้าสู่ Shoe Verse</a><a class="btn" href="#life">คุณวิ่งแบบไหน?</a><a class="btn solid" href="#ev-strip">งานวิ่งเร็วๆ นี้</a></div></div><picture class="h2img"><source media="(max-width:700px)" srcset="img/mascot/khonfu-running-400.webp"><img src="img/mascot/khonfu-running-800.webp" width="800" height="1120" alt="ขนฟู มาสคอตวิ่งดี กำลังวิ่งพร้อมกอดหัวใจ" fetchpriority="high" decoding="async"></picture></header>
@@ -30,5 +30,36 @@ const TXT={'ซ้อมทุกวัน':'ใส่สบาย วิ่ง�
  $('evs').innerHTML=up.map(e=>{const d=new Date(e[0]+'T00:00:00');return `<a class="evc" href="events.html" data-tile="events"><div class="evd"><b>${d.getDate()}</b>${TH_M[d.getMonth()]} ${d.getFullYear()+543}</div><div><div class="nm">${esc(e[1])}</div><div class="meta">${esc(e[2])} · ${esc(e[3])}</div></div></a>`}).join('')||'<p class="empty">ยังไม่มีงานที่ยืนยันในช่วงนี้</p>'})();
 fetch('run_catalog.json').then(r=>r.json()).then(J=>{const n={};J.products.forEach(p=>n[p.type]=(n[p.type]||0)+1);
  $('lt').innerHTML=Object.keys(IMG).filter(k=>n[k]).map(k=>{const im=IMG[k],h='shoes.html?type='+encodeURIComponent(k);return `<div class="ltile" data-t="${k}" style="background-image:url(${im[0]});background-position:${im[1]}"><a class="cover" href="${h}" data-tile="shoes-${esc(k)}" aria-label="${esc(k)}"></a><div class="lt-in"><h3>${esc(k)}</h3><p>${esc(TXT[k])}</p><a class="more" href="${h}">ดู ${n[k]} รุ่น →</a></div></div>`}).join('')}).catch(()=>{});
+</script>
+<section class="sec" id="visitors"><h2>ผู้เยี่ยมชมวิ่งดี</h2>
+<p class="lead">นับแบบไม่ใช้คุกกี้ (GoatCounter) · ตั้งแต่ 27 ต.ค. 2569</p>
+<div class="stats" id="vistats" aria-live="polite">
+<div><div class="stat" id="vis-today">—</div><small>วันนี้</small></div>
+<div><div class="stat" id="vis-week">—</div><small>สัปดาห์นี้</small></div>
+<div><div class="stat" id="vis-month">—</div><small>เดือนนี้</small></div>
+<div><div class="stat" id="vis-total">—</div><small>รวมทั้งหมด</small></div>
+</div>
+<p class="meta" id="visnote">อัปเดตจาก GoatCounter (แคชได้สูงสุด ~4 ชม.) · <a href="about.html#privacy">ความเป็นส่วนตัว</a></p></section>
+<script>
+(function(){
+ const code=String((window.SITE_CONFIG||{}).ANALYTICS_CODE||'').trim().toLowerCase();
+ const note=$('visnote');
+ const set=(id,n)=>{const el=$(id);if(!el)return;el.textContent=n==null?'—':Number(n).toLocaleString('th-TH')};
+ const parse=j=>{const s=String((j&&j.count)!=null?j.count:'').replace(/\D/g,'');return s===''?null:+s};
+ if(!/^[a-z0-9][a-z0-9-]{1,48}$/.test(code)){if(note)note.textContent='ยังไม่ได้เปิดระบบนับผู้เยี่ยมชม';return}
+ const base=`https://${code}.goatcounter.com/counter/TOTAL.json`;
+ const today=new Date().toLocaleString('en-CA',{timeZone:'Asia/Bangkok'}).slice(0,10);
+ const one=q=>fetch(base+q,{credentials:'omit'}).then(r=>{if(!r.ok)throw new Error(String(r.status));return r.json()}).then(parse);
+ Promise.allSettled([
+  one(`?start=${encodeURIComponent(today)}&end=${encodeURIComponent(today)}`),
+  one('?start=week'),
+  one('?start=month'),
+  one('?start=2026-10-27')
+ ]).then(rs=>{
+  const vals=rs.map(r=>r.status==='fulfilled'?r.value:null);
+  set('vis-today',vals[0]);set('vis-week',vals[1]);set('vis-month',vals[2]);set('vis-total',vals[3]);
+  if(vals.every(v=>v==null)&&note) note.textContent='สถิติยังโหลดไม่ได้ชั่วคราว · ลองใหม่ภายหลัง';
+ }).catch(()=>{if(note)note.textContent='สถิติยังโหลดไม่ได้ชั่วคราว · ลองใหม่ภายหลัง'});
+})();
 </script>
 </body></html>
