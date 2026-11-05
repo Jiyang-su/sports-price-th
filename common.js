@@ -56,6 +56,8 @@ function shipTable(){return `<div style="overflow-x:auto"><table class="ship-t">
 const UPD=(window.SITE_CONFIG||{}).DATA_UPDATED||{};
 function thDT(iso){if(!iso)return'';const d=new Date(iso);return d.getDate()+' '+TH_M[d.getMonth()]+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
 function dataStamp(){const t=UPD._site;return t?`วิ่งดี VingDee · ข้อมูลราคาอัปเดตล่าสุด ${thDT(t)} น. (เวลาไทย) · อัปเดตอัตโนมัติทุกวันประมาณ 06:00 น.`:''}
+function latestPriceScanDate(){const ds=Object.keys(UPD).filter(k=>k!=='_site'&&UPD[k]).map(k=>String(UPD[k]).slice(0,10)).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d));return ds.length?ds.sort().at(-1):(window.SITE_CONFIG||{}).PRICE_SCAN_DATE||''}
+function priceScanNote(){const d=latestPriceScanDate();return d?`อัปเดตราคา ${thDate(d)}`:''}
 function checkedLine(store){const t=UPD[store];return `<div class="chk">เช็กราคาล่าสุด ${t?thDT(t)+' น.':'—'} · ${esc(store)} · ราคาอาจเปลี่ยน ตรวจสอบที่ร้านอีกครั้ง</div>`}
 const hid=u=>{let h=5381;for(const c of String(u))h=((h<<5)+h+c.charCodeAt(0))>>>0;return h.toString(36)};
 function reportBtn(url,store){return `<button type="button" class="rep" data-store="${esc(store)}" data-id="${hid(url)}" onclick="event.stopPropagation();reportItem(this)">แจ้งข้อมูลผิด</button>`}
