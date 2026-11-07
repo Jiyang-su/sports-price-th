@@ -272,3 +272,21 @@ body[data-pg=index] .home-hero.hero2,.home-hero.hero2{grid-template-columns:1.1f
 .rc-ch{display:inline-block;transition:transform .2s}.rc-tog.shut .rc-ch{transform:rotate(-90deg)}
 .rc-body{margin-top:12px}.readycta-in{max-width:none}
 @media(max-width:700px){.rc-tog{text-align:left}}
+
+/* v68: ready.html 3D pillowy keycap tiles (press down / spring up) */
+.rdy-board{background:#fff4e6;border:2px solid #f1d7c4;border-radius:28px;box-shadow:0 14px 34px #3a232622,inset 0 2px 0 #fff}
+.rdy-head{border-radius:22px;margin:12px 12px 0;box-shadow:inset 0 2px 0 #ffffff55,0 6px 0 #9c2a45,0 10px 18px #9c2a4540}
+.rdy-grid{gap:14px;padding:18px 16px 26px;background:#fff4e6}
+.rdy-tile{--edge:#d9b9a8;--edge:color-mix(in srgb,var(--tile,#fff3c4) 62%,#8a5a50);aspect-ratio:1;min-height:0;border-radius:20px;background:linear-gradient(160deg,#ffffffb0 0%,#ffffff00 42%),var(--tile,#fff3c4);transform:translateY(0);
+ box-shadow:inset 3px 3px 0 #ffffffcc,inset -2px -3px 0 #00000010,0 8px 0 var(--edge),6px 14px 16px #3a232633;transition:transform .12s cubic-bezier(.3,1.6,.5,1),box-shadow .12s cubic-bezier(.3,1.6,.5,1);margin-bottom:8px;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.rdy-tile:hover{transform:translateY(-1px)}
+.rdy-tile:active,.rdy-tile.press{transform:translateY(7px);box-shadow:inset 2px 3px 6px #3a232633,inset -1px -1px 0 #ffffff80,0 1px 0 var(--edge),2px 3px 5px #3a232626;transition-duration:.05s}
+.rdy-tile.on{transform:translateY(4px);box-shadow:inset 0 0 0 3px #c13a5a,inset 3px 4px 8px #3a232626,0 4px 0 var(--edge),4px 7px 10px #3a23262e;filter:saturate(1.1)}
+.rdy-tile.on:active{transform:translateY(7px);box-shadow:inset 0 0 0 3px #c13a5a,inset 2px 3px 8px #3a232640,0 1px 0 var(--edge)}
+.rdy-tile.on .rdy-check{box-shadow:0 2px 0 #8f2440}
+.rdy-tile:focus-visible{outline:3px solid #c13a5a;outline-offset:4px}
+.rdy-tile .rdy-ico{font-size:28px;filter:drop-shadow(0 2px 0 #ffffffaa)}
+.rdy-foot{margin:0 12px 14px;border-radius:18px;box-shadow:inset 0 4px 10px #3a232626,inset 0 -2px 0 #ffffff99}
+@media(max-width:520px){.rdy-grid{gap:9px;padding:12px 10px 20px}.rdy-tile{border-radius:15px;margin-bottom:6px;box-shadow:inset 2px 2px 0 #ffffffcc,0 6px 0 var(--edge),4px 10px 12px #3a232630}.rdy-tile .rdy-ico{font-size:22px}.rdy-tile:active,.rdy-tile.press{transform:translateY(5px)}}
+@media(max-width:360px){.rdy-tile{aspect-ratio:auto;min-height:86px}}
+@media(prefers-reduced-motion:reduce){.rdy-tile,.rdy-tile:active{transition:none}.rdy-tile:hover{transform:none}}
