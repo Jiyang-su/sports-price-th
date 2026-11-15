@@ -17,7 +17,7 @@ function openProduct(p){let ov=$('pov');if(!ov){document.body.insertAdjacentHTML
  const e=p.sale_price??p.price,pi=priceInfo(p.url,e);$('pbox').style.setProperty('--acc',acc(p.category));
  $('pbox').innerHTML=`<button class="btn sm" style="float:right" onclick="$('pov').style.display='none'">ปิด</button><h3 style="margin:0 0 14px;max-width:85%">${esc(p.name)}</h3>
  <div style="display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:20px" class="pgrid"><img class="pi" src="${esc(p.image)}" alt="" style="width:100%;background:#fff;border-radius:4px;padding:6px">
- <div><div class="pr">${fmt(e)}</div><div class="meta">${esc(p.brand)} · ${esc(p.category)} · ข้อมูล ณ ${thDate(p.scraped)}</div><p>${shopBtn(p.link||p.url,p.store,"catalog-popup","btn acc","")}</p>
+ <div><div class="pr">${fmt(e)}</div><div class="meta">${esc(p.brand)} · ${esc(p.category)} · ข้อมูล ณ ${thDate(p.scraped)}</div><p>${shopBtn(p.link||p.url,p.store,"catalog-popup","btn acc","",{brand:p.brand,model:p.name})}</p>
  <h4 class="up" style="margin:18px 0 6px;font-size:12px;color:var(--mut)">ประวัติราคา</h4>${pi.s?spark(pi.s)+`<span class="tag ${pi.cls}">${pi.label}</span>`:`<div class="note">${pi.label} · กราฟและป้าย "ราคานี้ดีไหม" จะแสดงเมื่อมีข้อมูลอย่างน้อย 2 วัน</div>`}
 </div></div>
  <h4 class="up" style="margin:26px 0 6px;font-size:12px;color:var(--mut)">รีวิวจากคนเล่นจริง <span class="proto">ต้นแบบ</span></h4><div class="note">ยังไม่มีรีวิวสำหรับสินค้านี้ — เป็นคนแรกที่รีวิว</div>
@@ -40,9 +40,9 @@ const PAFF=(window.SITE_CONFIG||{}).PRODUCT_AFF||{};
 function affKey(u){try{const x=new URL(u);return (x.host.replace(/^www\./,'')+x.pathname.replace(/\/+$/,'')).toLowerCase()}catch(e){return ''}}
 const prodAff=u=>PAFF[affKey(u)]||'';
 function affUrl(url,store){const o=prodAff(url);if(o)return o;const t=PTPL[store];return t?t.replace('{url_enc}',encodeURIComponent(url)).replace('{url}',url):url}
-function storeA(store,pos,inner,cls='',style=''){const L=SLINK[store]||{},u=L.aff||L.site;if(!u)return esc(store);return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(u)}" target="_blank" rel="${L.aff?'nofollow noopener sponsored':'nofollow noopener'}" data-store="${esc(store)}" data-aff="${L.aff?'store':''}" data-pos="${pos}">${inner||esc(store)}</a>`}
+function storeA(store,pos,inner,cls='',style=''){const L=SLINK[store]||{},u=L.aff||L.site;if(!u)return esc(store);return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(u)}" target="_blank" rel="${L.aff?'nofollow noopener sponsored':'nofollow noopener'}" data-out="${esc(store)}" data-store="${esc(store)}" data-aff="${L.aff?'store':''}" data-pos="${pos}">${inner||esc(store)}</a>`}
 function storeList(pos){return Object.keys(SLINK).filter(k=>SLINK[k].site).map(k=>storeA(k,pos)).join(' · ')}
-function shopA(url,store,pos,inner,cls='',style=''){const href=affUrl(url,store),aff=!!(prodAff(url)||isShortAff(url)||isShortAff(href));return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(href)}" target="_blank" rel="${aff?'nofollow noopener sponsored':relFor(store)}"${aff?' data-aff="product"':''} data-out="${esc(store)}" data-pos="${pos}" onclick="event.stopPropagation()">${inner}</a>`}
+function shopA(url,store,pos,inner,cls='',style='',info){if(style&&typeof style==='object'&&info==null){info=style;style=''}const href=affUrl(url,store),aff=!!(prodAff(url)||isShortAff(url)||isShortAff(href)),brand=info&&info.brand||'',model=info&&info.model||'';return `<a${cls?` class="${cls}"`:''}${style?` style="${style}"`:''} href="${esc(href)}" target="_blank" rel="${aff?'nofollow noopener sponsored':relFor(store)}"${aff?' data-aff="product"':''} data-out="${esc(store)}" data-pos="${pos}"${brand?` data-brand="${esc(brand)}"`:''}${model?` data-model="${esc(model)}"`:''} onclick="event.stopPropagation()">${inner}</a>`}
 // v7: delivery info per store (only what the store states; source in stores.json -> SITE_CONFIG.SHIPPING)
 const SHIP=(window.SITE_CONFIG||{}).SHIPPING||{};
 function addWorkdays(d,n){d=new Date(d);while(n>0){d.setDate(d.getDate()+1);const w=d.getDay();if(w!=0&&w!=6)n--}return d}
@@ -75,7 +75,7 @@ function trustBits(url,store){return `<div class="trust"><span class="pcx" data-
 // v9b: compact line on mobile; full details behind a toggle (desktop always shows details)
 function compactLine(store){const s=SHIP[store],t=UPD[store];return `<div class="cl">🚚 ${s&&s.days_bkk?esc(s.days_bkk)+' วัน':'ดูที่ร้าน'} · เช็กราคา ${t?thDT(t):'—'} <button type="button" class="dt" aria-expanded="false" onclick="event.stopPropagation();toggleDx(this)">รายละเอียด</button></div>`}
 function toggleDx(b){const d=b.closest('.cl').nextElementSibling,o=!d.classList.contains('open');d.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.textContent=o?'ซ่อน':'รายละเอียด'}
-function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-align:center',text='ไปที่หน้าร้าน'){return shopA(url,store,pos,text,cls,style)+affLbl(url,store)+compactLine(store)+`<div class="dx">${shipLine(store)}${trustBits(url,store)}</div>`}
+function shopBtn(url,store,pos,cls='btn sm acc',style='margin-top:auto;text-align:center',text='ไปที่หน้าร้าน',info){if(text&&typeof text==='object'&&info==null){info=text;text='ไปที่หน้าร้าน'}return shopA(url,store,pos,text,cls,style,info)+affLbl(url,store)+compactLine(store)+`<div class="dx">${shipLine(store)}${trustBits(url,store)}</div>`}
 // v23: install to home screen (footer button; Android uses beforeinstallprompt, iOS shows a tip). Hidden when standalone/installed.
 (function(){const SA=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
  if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
